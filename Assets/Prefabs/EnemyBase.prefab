@@ -171,6 +171,15 @@ MonoBehaviour:
   currentHP: 0
   damage: 10
   detectionRadius: 5
+  targets:
+    serializedVersion: 2
+    m_Bits: 264
+  lowPriorityTargets:
+    serializedVersion: 2
+    m_Bits: 256
+  highPriorityTargets:
+    serializedVersion: 2
+    m_Bits: 8
   moveTo: {fileID: 202633869737993961}
 --- !u!114 &202633869737993961
 MonoBehaviour:
