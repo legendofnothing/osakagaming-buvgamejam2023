@@ -1,10 +1,11 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Entity {
     public class EntityBase : MonoBehaviour {
         [Header("Entity Config")]
         public float hp;
-        public float currentHP;
+        [ReadOnly] public float currentHP;
 
         protected virtual void Start() {
             currentHP = hp;

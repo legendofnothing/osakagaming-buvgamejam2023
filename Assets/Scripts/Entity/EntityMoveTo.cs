@@ -5,8 +5,6 @@ using Random = UnityEngine.Random;
 
 namespace Entity {
     public class EntityMoveTo : MonoBehaviour {
-        [Header("Readonly")]
-        public bool canMove = true;
         private NavMeshAgent agent;
 
         private void Start() {
