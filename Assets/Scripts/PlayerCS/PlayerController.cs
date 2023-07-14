@@ -35,23 +35,16 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Start()
-    {
-        //lazerSightObj.SetActive(false);
+    private void Start() {
         _moveSpeedCount = _moveSpeed;
     }
-
-
-    void Update()
-    {
-        if(rb.velocity.magnitude > _maxMagnitude)
-        {
+    
+    private void Update() {
+        if(rb.velocity.magnitude > _maxMagnitude) {
             rb.velocity = Vector2.ClampMagnitude(rb.velocity, _maxMagnitude);
         }
 
         _moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-
-        //ChangeMovespeedOnMouseInput();
 
         Flip();
         TurnPlayerArm();
@@ -59,8 +52,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
-
         //Change the drag based on moving key is press or not//
         if (Mathf.Abs(_moveInput.x) == 0 && Mathf.Abs(_moveInput.y) == 0)
         {
@@ -107,26 +98,9 @@ public class PlayerMovement : MonoBehaviour
         _playerArm.transform.rotation = Quaternion.Slerp(playerArmRotationVar, MouseRotationVar, Time.deltaTime * _turnSpeed);
     }
 
-    ////Turn player base on mouse position
-    //private void Turn()
-    //{
-    //    float playerRotation = gameObject.transform.localRotation.eulerAngles.z;
-    //    Quaternion playerRotationVar = Quaternion.Euler(0, 0, playerRotation);
-
-    //    Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); //Get mouse postion
-    //    Vector2 mouseDirection = mousePosition - new Vector2(transform.position.x, transform.position.y); //Get mouse direction (direction = destination - source)
-    //    float mouseEulerRotationVar = Mathf.Atan2(mouseDirection.y, mouseDirection.x) * Mathf.Rad2Deg - 90; // reverse cotan to get angle
-
-    //    Quaternion MouseRotationVar = Quaternion.Euler(0, 0, mouseEulerRotationVar);
-
-    //    this.transform.rotation = Quaternion.Slerp(playerRotationVar, MouseRotationVar, Time.deltaTime * _turnSpeed);
-
-    //}
-
     private void Move()
     {
-        
-        rb.AddForce(_moveSpeedCount * Time.deltaTime * _moveInput);
+        rb.AddForce(_moveSpeedCount * Time.fixedDeltaTime * _moveInput);
     }
 
 }
