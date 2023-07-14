@@ -18,6 +18,12 @@ namespace Entity {
             var driftPos = target.transform.position + (Vector3)(agentDrift * Random.insideUnitCircle);
             agent.SetDestination(driftPos);
         }
+        
+        public void SetDestination(Vector3 target) {
+            var agentDrift = 0.0001f;
+            var driftPos = target + (Vector3)(agentDrift * Random.insideUnitCircle);
+            agent.SetDestination(driftPos);
+        }
 
         public void ChangeMovementState(bool state) => agent.isStopped = state;
     }
