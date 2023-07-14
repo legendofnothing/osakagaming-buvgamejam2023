@@ -6,8 +6,6 @@ namespace Enemy {
     public class EnemyBase : EntityBase {
         [Header("Enemy Config")]
         public float damage;
-        public float speed = 2f;
-        public float stoppingDistance = 8f;
         public float detectionRadius = 5f;
 
         [Header("Refs")] 
@@ -15,12 +13,10 @@ namespace Enemy {
 
         protected override void Start() {
             base.Start();
-            moveTo.speed = speed;
-            moveTo.stoppingDistance = stoppingDistance;
         }
 
         private void Update() {
-            moveTo.SetTarget(Base.Base.instance.transform.position);
+            moveTo.SetDestination(Base.Base.instance.gameObject);
         }
     }
 }

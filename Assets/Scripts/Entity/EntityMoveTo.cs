@@ -1,28 +1,25 @@
 using System;
 using UnityEngine;
+using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 namespace Entity {
     public class EntityMoveTo : MonoBehaviour {
-        [Header("Config")]
-        public float stoppingDistance = 2f;
-        public float speed = 8f;
-        
         [Header("Readonly")]
         public bool canMove = true;
-        public Vector2 target;
+        private NavMeshAgent agent;
 
-        public void SetTarget(Vector2 target) {
-            this.target = target;
+        private void Start() {
+            agent = GetComponent<NavMeshAgent>();
+            agent.updateRotation = false;
+            agent.updateUpAxis = false;
         }
 
-        public void ResetTarget() => target = Vector2.zero;
-
-        private void FixedUpdate() {
-            if (target == Vector2.zero) return;
-            
-            if (canMove && Vector2.Distance(transform.position, target) > stoppingDistance) {
-                transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.fixedDeltaTime);
-            }
+        public void SetDestination(GameObject target) {
+            if (!canMove) return;
+            var agentDrift = 0.0001f;
+            var driftPos = target.transform.position + (Vector3)(agentDrift * Random.insideUnitCircle);
+            agent.SetDestination(driftPos);
         }
     }
 }
