@@ -130,4 +130,3 @@ public class ObjectPoolInfo
     public string lookUpString;
     public List<GameObject> InactiveGameObject = new List<GameObject>();
 }
-

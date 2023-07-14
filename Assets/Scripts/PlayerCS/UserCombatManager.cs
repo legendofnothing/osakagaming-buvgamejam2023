@@ -44,8 +44,8 @@ public class UserCombatManager : MonoBehaviour
     {
         float shootDelayCount = 0;
         canShoot = false;
-        Instantiate(bulletPF, _shootPoint.position, _shootPoint.rotation);
-
+        //Instantiate(bulletPF, _shootPoint.position, _shootPoint.rotation);
+        ObjectPool.SpawnObject(bulletPF, _shootPoint.position, _shootPoint.rotation);
 
         Vector2 knockBackDir = new Vector2(Mathf.Sin((-_shootPoint.rotation.eulerAngles.z + 90) * Mathf.Deg2Rad), Mathf.Cos((-_shootPoint.rotation.eulerAngles.z + 90) * Mathf.Deg2Rad));
         rb.AddForce(knockBackDir * 9000 * Time.deltaTime, ForceMode2D.Impulse);
