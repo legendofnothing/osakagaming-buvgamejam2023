@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Linq;
 using Core;
+using Core.EventDispatcher;
 using DG.Tweening;
 using Entity;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
+using EventType = Core.EventDispatcher.EventType;
 using Random = UnityEngine.Random;
 
 namespace Survivor {
@@ -23,12 +25,13 @@ namespace Survivor {
         public LayerMask threatLayers;
         public LayerMask baseLayer;
 
-        [FormerlySerializedAs("duration")] [TitleGroup("Enter Base Tween Config")]
+        [TitleGroup("Enter Base Tween Config")]
         public float enterBaseDuration;
         public Ease enterBaseEaseType;
 
         [TitleGroup("Config")] 
         public float detectionRadius;
+        public float enterBaseRadius;
         
         [TitleGroup("Speed Config")] 
         public float wanderSpeed;
@@ -95,6 +98,7 @@ namespace Survivor {
                         if (_agent.remainingDistance < _agent.stoppingDistance && !_hasSwitched) {
                             _hasSwitched = true;
                             transform.DOScale(0.6f, 1f);
+                            this.SendMessage(EventType.OnSurvivorAdded, this);
                         }
                         break;
                     default:
@@ -108,7 +112,7 @@ namespace Survivor {
                 }
             }
             else {
-               var baseTarget = Physics2D.CircleCast(transform.position, detectionRadius, Vector2.zero, 0, baseLayer);
+               var baseTarget = Physics2D.CircleCast(transform.position, enterBaseRadius, Vector2.zero, 0, baseLayer);
                if (baseTarget.collider != null) {
                    moveTo.SetDestination(baseTarget.collider.gameObject);
                    
@@ -132,7 +136,15 @@ namespace Survivor {
             transform
                 .DOMove(_currentTarget.transform.position, enterBaseDuration)
                 .SetEase(enterBaseEaseType)
-                .OnComplete(() =>Destroy(gameObject));
+                .OnComplete(() => {
+                    this.SendMessage(EventType.OnSurvivorEnteredBase, this);
+                    this.SendMessage(EventType.OnSurvivorDecreased, this);
+                    Destroy(gameObject);
+                });
+        }
+
+        protected override void Death() {
+            Destroy(gameObject);
         }
     }
 }

@@ -4,5 +4,9 @@ namespace Core.EventDispatcher {
     /// </summary>
     public enum EventType {
         None = 0,
+        
+        OnSurvivorAdded,
+        OnSurvivorDecreased,
+        OnSurvivorEnteredBase,
     }
 }

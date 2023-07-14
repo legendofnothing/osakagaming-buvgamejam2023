@@ -2,24 +2,27 @@ using System;
 using System.Collections;
 using System.Linq;
 using Core;
+using DG.Tweening;
 using Entity;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
 
 namespace Enemy {
     public class EnemyBase : EntityBase {
-        [Header("Enemy Config")]
+        [TitleGroup("Enemy Config")]
         public float damage;
         public float detectionRadius = 5f;
+        public float attackRadius = 1.2f;
         public float attackDelay = 1.2f;
 
-        [Header("Target")] 
+        [TitleGroup("Target")] 
         public LayerMask targets;
         public LayerMask lowPriorityTargets;
         public LayerMask highPriorityTargets;
 
-        [Header("Refs")] 
+        [TitleGroup("Refs")] 
         public EntityMoveTo moveTo;
 
         private GameObject _currentTarget;
@@ -51,11 +54,35 @@ namespace Enemy {
             if (_currentTarget != null) {
                 moveTo.SetDestination(_currentTarget);
 
-                if (_agent.velocity == Vector3.zero && _canAttack) {
+                if (Math.Abs(_agent.remainingDistance - _agent.stoppingDistance) > 0.2f && _canAttack) {
                     _canAttack = false;
-                    //Do animation based attack
+                    Attack();
                 }
             }
+        }
+
+        private void Attack() {
+            var layerMaskToDetect =
+                CheckLayerMask.IsInLayerMask(_currentTarget.gameObject, highPriorityTargets)
+                    ? highPriorityTargets
+                    : lowPriorityTargets;
+            var targets  = Physics2D.CircleCastAll(transform.position, attackRadius, Vector2.zero, 0, layerMaskToDetect);
+            var target =targets
+                .ToList()
+                .OrderBy(x => Vector2.Distance(transform.position, x.transform.position))
+                .FirstOrDefault();
+
+            if (target.collider != null) {
+                if (target.transform.gameObject.TryGetComponent<EntityBase>(out var entity)) {
+                    entity.TakeDamage(damage);
+                }
+            }
+
+            DOVirtual.DelayedCall(attackDelay, () => _canAttack = true);
+        }
+        
+        protected override void Death() {
+            Destroy(gameObject);
         }
     }
 }

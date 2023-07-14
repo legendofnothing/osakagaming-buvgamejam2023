@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2682941767840780549
 SpriteRenderer:
@@ -169,8 +169,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 100
   currentHP: 0
+  canTakeDamage: 1
   damage: 10
   detectionRadius: 5
+  attackRadius: 1.4
+  attackDelay: 1.2
   targets:
     serializedVersion: 2
     m_Bits: 264
@@ -193,4 +196,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f16304710d8869499c25405afb125c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canMove: 1

@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2682941767840780549
 SpriteRenderer:
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9a93b6bffb419458a4525185a8133e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
+  hp: 20
   currentHP: 0
   canTakeDamage: 1
   targetLayers:
@@ -185,6 +185,7 @@ MonoBehaviour:
   enterBaseDuration: 1.4
   enterBaseEaseType: 28
   detectionRadius: 3
+  enterBaseRadius: 2
   wanderSpeed: 1.5
   runAwaySpeed: 2
   runToPlayerSpeed: 4

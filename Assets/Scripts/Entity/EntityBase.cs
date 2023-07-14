@@ -21,7 +21,7 @@ namespace Entity {
         }
 
         protected virtual void Death() {
-            Destroy(gameObject);
+            
         }
     }
 }

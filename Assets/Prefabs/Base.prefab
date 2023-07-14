@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2682941767840780549}
   - component: {fileID: 8505022780766404192}
   - component: {fileID: 2107237925565235642}
+  - component: {fileID: 558217086520990424}
   m_Layer: 6
   m_Name: Base
   m_TagString: Untagged
@@ -145,3 +146,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 100
   currentHp: 0
+  survivorCounts: 0
+--- !u!114 &558217086520990424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496441966297472576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
