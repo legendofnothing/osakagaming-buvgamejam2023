@@ -11,13 +11,7 @@ public class PlayerMovement : MonoBehaviour
     //[SerializeField] private float slowedMoveSpeed;
     [SerializeField] private float turnSpeed;
     [SerializeField] private float moveDrag;
-    //[SerializeField] private float dashDrag;
     [SerializeField] private float stopDrag;
-
-    [SerializeField] private float dashDelay;
-    [SerializeField] private float dashSpeed;
-    private bool isDashing;
-    private bool canDash;
 
     //[SerializeField] private GameObject lazerSightObj;
 
@@ -40,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         //lazerSightObj.SetActive(false);
-        canDash = true;
         moveSpeedCount = moveSpeed;
     }
 
@@ -56,28 +49,8 @@ public class PlayerMovement : MonoBehaviour
 
         //ChangeMovespeedOnMouseInput();
 
-        ProcessDashInput();
 
     }
-
-    private void ProcessDashInput()
-    {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            //lazerSightObj.SetActive(true);
-        }
-        else if (Input.GetKeyUp(KeyCode.Space))
-        {
-            //&& manaManagerCS.GetCurrentMana() > 50
-            if (canDash)
-            {
-                dash = true;
-            }
-            //lazerSightObj.SetActive(false);
-
-        }
-    }
-
 
     //private void ChangeMovespeedOnMouseInput()
     //{
@@ -97,14 +70,6 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Turn();
-        if (dash)
-        {
-            StartCoroutine(StartDash());
-            dash = false;
-        }
-
-        if (isDashing)
-            return;
 
         //Change the drag based on moving key is press or not//
         if (Mathf.Abs(moveInput.x) == 0 && Mathf.Abs(moveInput.y) == 0)
@@ -137,23 +102,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        if (isDashing) { return; }
+        
         rb.AddForce(moveSpeedCount * Time.deltaTime * moveInput);
     }
 
-    IEnumerator StartDash()
-    {
-        canDash = false;
-        isDashing = true;
-        rb.drag = moveDrag;
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); //Get mouse postion
-        Vector2 mouseDirection = mousePosition - new Vector2(transform.position.x, transform.position.y); //Get direction to mouse
-
-        rb.AddForce(dashSpeed * Time.deltaTime * mouseDirection.normalized, ForceMode2D.Impulse); // Dash base on mouse position               
-
-        yield return new WaitForSeconds(dashDelay);
-
-        isDashing = false;
-        canDash = true;     
-    }
 }

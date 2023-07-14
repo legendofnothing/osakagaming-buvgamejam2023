@@ -1,3 +1,4 @@
+using Entity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,7 +31,7 @@ public class UserCombatManager : MonoBehaviour
 
     void ShootBullet()
     {
-
+        //GetComponent<EntityBase>().TakeDamage(10);
     }
 
     IEnumerator Shoot()
