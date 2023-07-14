@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Random = System.Random;
 
-namespace Scripts.Core.Collections
+namespace Core.Collections
 {
     /// <summary>
     /// The more weight an object has, the more chance it gets to spawn

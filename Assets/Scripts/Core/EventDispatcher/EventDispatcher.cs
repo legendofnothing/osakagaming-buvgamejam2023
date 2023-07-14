@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Core;
 using UnityEngine;
 
-namespace Scripts.Core.EventDispatcher {
+namespace Core.EventDispatcher {
     public class EventDispatcher : Singleton<EventDispatcher> {
         private Dictionary<EventType, Action<object>> _listeners = new(); //Store listeners and correspond event type
 
