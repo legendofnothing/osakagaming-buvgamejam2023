@@ -54,7 +54,7 @@ namespace Enemy {
             if (_currentTarget != null) {
                 moveTo.SetDestination(_currentTarget);
 
-                if (Math.Abs(_agent.remainingDistance - _agent.stoppingDistance) > 0.2f && _canAttack) {
+                if (Math.Abs(_agent.remainingDistance - _agent.stoppingDistance) < 0.2f && _canAttack) {
                     _canAttack = false;
                     Attack();
                 }
@@ -75,6 +75,9 @@ namespace Enemy {
             if (target.collider != null) {
                 if (target.transform.gameObject.TryGetComponent<EntityBase>(out var entity)) {
                     entity.TakeDamage(damage);
+                }
+                else if (target.transform.gameObject.TryGetComponent<Base.Base>(out var b)) {
+                    b.TakeDamage(damage);
                 }
             }
 

@@ -8,7 +8,7 @@ using EventType = Core.EventDispatcher.EventType;
 namespace Base {
     public class Base : Singleton<Base> {
         public float hp;
-        public float currentHp;
+        [ReadOnly] public float currentHp;
 
         [TitleGroup("Info")] 
         [ReadOnly] public int survivorCounts;
@@ -17,6 +17,10 @@ namespace Base {
             currentHp = hp;
             this.SubscribeListener(EventType.OnSurvivorEnteredBase, _=>survivorCounts++);
         }
-        
+
+        public void TakeDamage(float amount) {
+            currentHp -= amount;
+            if (survivorCounts > 0) survivorCounts--;
+        }
     }
 }

@@ -179,7 +179,7 @@ MonoBehaviour:
     m_Bits: 264
   lowPriorityTargets:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 320
   highPriorityTargets:
     serializedVersion: 2
     m_Bits: 8
