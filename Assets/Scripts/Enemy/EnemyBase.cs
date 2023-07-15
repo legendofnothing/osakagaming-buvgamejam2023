@@ -30,10 +30,14 @@ namespace Enemy {
         private bool _canSwitchState = true;
         private bool _canAttack = true;
         private RaycastHit2D[] _targets;
+        private float _defaultSpeed;
+
+        private Tween _currSlowdownTween;
 
         protected override void Start() {
             base.Start();
             _agent = GetComponent<NavMeshAgent>();
+            _defaultSpeed = _agent.speed;
         }
         
         private void Update() {
@@ -83,7 +87,16 @@ namespace Enemy {
 
             DOVirtual.DelayedCall(attackDelay, () => _canAttack = true);
         }
-        
+
+        public override void TakeDamage(float amount) {
+            _currSlowdownTween?.Kill();
+            base.TakeDamage(amount);
+            _agent.speed *= 2f / 3f;
+            _currSlowdownTween = DOVirtual.Float(_agent.speed, _defaultSpeed, 2.4f, value => {
+                _agent.speed = value;
+            });
+        }
+
         protected override void Death() {
             Destroy(gameObject);
         }

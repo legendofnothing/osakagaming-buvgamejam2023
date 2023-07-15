@@ -8,5 +8,7 @@ namespace Core.EventDispatcher {
         OnSurvivorAdded,
         OnSurvivorDecreased,
         OnSurvivorEnteredBase,
+        
+        OnPlayerTakeDamage,
     }
 }
