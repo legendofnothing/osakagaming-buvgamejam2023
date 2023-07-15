@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Core;
@@ -54,6 +55,7 @@ namespace Survivor {
 
         protected override void Start() {
             base.Start();
+            animator.SetBool("IsAlive", true);
             _agent = GetComponent<NavMeshAgent>();
             _agent.speed = wanderSpeed;
             _currentState = SurvivorState.Wander;
@@ -166,9 +168,21 @@ namespace Survivor {
                 });
         }
 
-        protected override void Death() {
+        protected override void Death()
+        {
             _currentTween?.Kill();
             Destroy(gameObject);
+        }
+
+        protected override IEnumerator DelayDeath()
+        {
+            animator.SetBool("IsAlive", false);
+            _agent.isStopped = true;
+            _currentTween?.Kill();
+            GetComponent<BoxCollider2D>().enabled = false;            
+            yield return new WaitForSeconds(2f);
+            Destroy(gameObject);
+            
         }
     }
 }
