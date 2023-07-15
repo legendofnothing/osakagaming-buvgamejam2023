@@ -607,7 +607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2593949170520231730, guid: 289b49c343da85e47aa759ebe0a56ebe, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3681881699963655376, guid: 289b49c343da85e47aa759ebe0a56ebe, type: 3}
       propertyPath: m_RootOrder
@@ -652,6 +652,26 @@ PrefabInstance:
     - target: {fileID: 3681881699963655376, guid: 289b49c343da85e47aa759ebe0a56ebe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958415194619526949, guid: 289b49c343da85e47aa759ebe0a56ebe, type: 3}
+      propertyPath: delay
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958415194619526949, guid: 289b49c343da85e47aa759ebe0a56ebe, type: 3}
+      propertyPath: radius
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958415194619526949, guid: 289b49c343da85e47aa759ebe0a56ebe, type: 3}
+      propertyPath: revivePuddle
+      value: 
+      objectReference: {fileID: 1727671300179322867, guid: caabea9bbd6442f4d82ab93dfc2d5af3, type: 3}
+    - target: {fileID: 7958415194619526949, guid: 289b49c343da85e47aa759ebe0a56ebe, type: 3}
+      propertyPath: startingAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958415194619526949, guid: 289b49c343da85e47aa759ebe0a56ebe, type: 3}
+      propertyPath: throwableEaseType
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 7958415194619526949, guid: 289b49c343da85e47aa759ebe0a56ebe, type: 3}
       propertyPath: interactLayers.m_Bits

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8694607742631260673}
   - component: {fileID: 4381036323476153014}
   - component: {fileID: 8505022780766404192}
+  - component: {fileID: -5800766549758739846}
   - component: {fileID: 5590597148880158601}
   - component: {fileID: 202633869737993961}
   m_Layer: 7
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -1983650057, guid: ca82c439de143cc40975832c1133089d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -191,6 +192,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &-5800766549758739846
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496441966297472576}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!114 &5590597148880158601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +234,7 @@ MonoBehaviour:
   hp: 100
   currentHP: 0
   canTakeDamage: 1
+  survivorPrefab: {fileID: 1496441966297472576, guid: b7f09b0608ea5b644b6d0f6b5241c93c, type: 3}
   damage: 10
   detectionRadius: 5
   attackRadius: 1.4

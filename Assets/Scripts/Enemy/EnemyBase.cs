@@ -11,7 +11,9 @@ using UnityEngine.Serialization;
 
 namespace Enemy {
     public class EnemyBase : EntityBase {
-        [TitleGroup("Enemy Config")]
+        [TitleGroup("Enemy Config")] 
+        public GameObject survivorPrefab;
+        [Space]
         public float damage;
         public float detectionRadius = 5f;
         public float attackRadius = 1.2f;
@@ -92,8 +94,10 @@ namespace Enemy {
         }
 
         public override void TakeDamage(float amount) {
-            _currSlowdownTween?.Kill();
             base.TakeDamage(amount);
+            
+            if (currentHP <= 0) return;
+            _currSlowdownTween?.Kill();
             _agent.speed *= 2f / 3f;
             _currSlowdownTween = DOVirtual.Float(_agent.speed, _defaultSpeed, 2.4f, value => {
                 _agent.speed = value;
@@ -101,7 +105,29 @@ namespace Enemy {
         }
 
         protected override void Death() {
+            _currSlowdownTween?.Kill();
             Destroy(gameObject);
+        }
+
+        public void Convert() {
+            _canSwitchState = false;
+            _canAttack = false;
+            canTakeDamage = false;
+            var s = DOTween.Sequence();
+            s
+                .Append(DOVirtual.Float(_agent.speed, 0, 2f, value => {
+                    _agent.speed = value;
+                }).OnComplete(() => {
+                    _agent.enabled = false;
+                    _currentTarget = null;
+                }))
+                .AppendInterval(0.8f)
+                .Append(transform.DOShakePosition(4f))
+                .Append(transform.DOScale(0, 1.4f).SetEase(Ease.InElastic))
+                .OnComplete(() => {
+                    Instantiate(survivorPrefab, transform.position, Quaternion.identity);
+                    Destroy(gameObject);
+                });
         }
     }
 }
