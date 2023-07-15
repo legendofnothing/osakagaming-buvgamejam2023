@@ -47,6 +47,7 @@ namespace Enemy {
             _agent = GetComponent<NavMeshAgent>();
             _defaultSpeed = _agent.speed;
             animator.SetBool("IsMoving", true);
+            animator.SetBool("IsAlive", true) ;
 
             _agent.avoidancePriority = Random.Range(20, 70);
         }
@@ -104,7 +105,8 @@ namespace Enemy {
             if (!canTakeDamage) return;
             base.TakeDamage(amount);
             StartCoroutine(Recover());
-            
+            animator.SetTrigger("hurt");
+
             if (currentHP <= 0) return;
             _currSlowdownTween?.Kill();
             _agent.speed *= 2f / 3f;
@@ -116,7 +118,7 @@ namespace Enemy {
         public override IEnumerator Recover()
         {
             
-            animator.SetBool("IsMoving", false);
+            //animator.SetBool("IsMoving", false);
             
             float previouseSpeed = _agent.speed;
             _agent.speed = 0.6f;
@@ -133,12 +135,13 @@ namespace Enemy {
 
             _agent.speed = previouseSpeed;
 
-            animator.SetBool("IsMoving", true);
+            //animator.SetBool("IsMoving", true);
             GetComponent<BoxCollider2D>().enabled = true;
             canTakeDamage = true;
         }
 
         protected override void Death() {
+            animator.SetBool("IsAlive", false);
             _currSlowdownTween?.Kill();
             this.SendMessage(EventType.OnEnemyDie, this);
             Destroy(gameObject);
