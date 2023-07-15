@@ -32,6 +32,7 @@ namespace Enemy {
         public SpriteRenderer body;       
         public Animator animator;
 
+        private bool _isAlive;
         private GameObject _currentTarget;
         private NavMeshAgent _agent;
         private bool _canSwitchState = true;
@@ -44,6 +45,7 @@ namespace Enemy {
 
         protected override void Start() {
             base.Start();
+            _isAlive = true;
             _agent = GetComponent<NavMeshAgent>();
             _defaultSpeed = _agent.speed;
             animator.SetBool("IsMoving", true);
@@ -53,6 +55,8 @@ namespace Enemy {
         }
         
         private void Update() {
+            if (!_isAlive) { return; }
+
             if (_canSwitchState) {
                 _targets = Physics2D.CircleCastAll(transform.position, detectionRadius, Vector2.zero, 0, targets);
 
@@ -79,6 +83,8 @@ namespace Enemy {
         }
 
         private void Attack() {
+            if(!_isAlive) { return; }    
+
             var layerMaskToDetect =
                 CheckLayerMask.IsInLayerMask(_currentTarget.gameObject, highPriorityTargets)
                     ? highPriorityTargets
@@ -147,7 +153,21 @@ namespace Enemy {
             Destroy(gameObject);
         }
 
+        protected override IEnumerator DelayDeath()
+        {
+            animator.SetBool("IsAlive", false);
+            _currSlowdownTween?.Kill();
+            this.SendMessage(EventType.OnEnemyDie, this);
+            this.GetComponent<BoxCollider2D>().enabled = false;
+            _defaultSpeed = 0;
+            _agent.isStopped = true;
+            yield return new WaitForSeconds(1.3f);
+            Destroy(gameObject);
+        }
+
         public void Convert() {
+            if (!_isAlive) { return; }
+
             if (_hasChanged) return;
             _hasChanged = true;
             _canSwitchState = false;

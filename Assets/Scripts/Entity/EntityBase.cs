@@ -32,7 +32,8 @@ namespace Entity {
             if (!canTakeDamage) return;
             currentHP -= amount;
             if (currentHP <= 0) {
-                Death();               
+                //Death();
+                StartCoroutine(DelayDeath());
             }
             
             //StartCoroutine(Recover());
@@ -46,6 +47,12 @@ namespace Entity {
 
         protected virtual void Death() {
             
+        }
+
+        protected virtual IEnumerator DelayDeath()
+        {
+            
+            yield return null;
         }
     }
 }
