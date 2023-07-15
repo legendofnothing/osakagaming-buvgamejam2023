@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4549606668720474995}
   - component: {fileID: -5056807574927234027}
   - component: {fileID: 6535413774056070629}
+  - component: {fileID: 6307865122642319143}
   m_Layer: 8
   m_Name: SuvivorBase
   m_TagString: Untagged
@@ -36,7 +37,7 @@ Transform:
   - {fileID: 7633239953275840427}
   - {fileID: 503263978388265715}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2682941767840780549
 SpriteRenderer:
@@ -170,6 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 20
+  recoverTime: 0
   currentHP: 0
   canTakeDamage: 1
   targetLayers:
@@ -192,6 +194,7 @@ MonoBehaviour:
   runAwaySpeed: 2
   runToPlayerSpeed: 4
   moveTo: {fileID: 6535413774056070629}
+  animator: {fileID: 0}
   _currentState: 0
 --- !u!114 &6535413774056070629
 MonoBehaviour:
@@ -205,6 +208,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f16304710d8869499c25405afb125c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &6307865122642319143
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496441966297472576}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2eb0d8f9affd91147aaf1b059dab6303, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4578499129538800963
 GameObject:
   m_ObjectHideFlags: 0
