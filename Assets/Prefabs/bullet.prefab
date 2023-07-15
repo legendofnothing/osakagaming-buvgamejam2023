@@ -148,9 +148,9 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.02164486, y: 0.16233516}
   m_SpriteTilingProperty:
-    border: {x: 1.75, y: 2.4, z: 1.7, w: 2.15}
+    border: {x: 0.4375, y: 0.6, z: 0.425, w: 0.5375}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5, y: 5}
+    oldSize: {x: 1.25, y: 1.25}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -171,7 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6089c07c97d8e9144855c436368bded9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  _bulletSpeed: 30
+  _bulletSpeed: 20
