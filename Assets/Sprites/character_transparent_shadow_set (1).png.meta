@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5d188bdba69abde4f94a9fa308175306
+guid: a1f805174de71c446b9567835678cdb5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 458.4
+  spritePixelsToUnits: 1200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: c_female2_0
+      name: character_transparent_shadow_set (1)_0
       rect:
         serializedVersion: 2
-        x: 15
+        x: 0
         y: 0
-        width: 370
-        height: 580
+        width: 301
+        height: 108
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a7bb878fc198a142901038a3a402d89
-      internalID: 594104650
+      spriteID: 84f1bf5a94634d847bcc0ebf273aa7c3
+      internalID: 637256928
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: c_female2_2
+      name: character_transparent_shadow_set (1)_1
       rect:
         serializedVersion: 2
-        x: 416
-        y: 2
-        width: 370
-        height: 580
+        x: 380
+        y: 3
+        width: 320
+        height: 135
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,8 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2c3a2debc4c5d345ba27a4b5e83ccf6
-      internalID: -1822784701
+      spriteID: 10c096beaee6cc54fa6f2748f738cf36
+      internalID: 1269046395
       vertices: []
       indices: 
       edges: []
@@ -175,12 +175,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      c_female2_0: 594104650
-      c_female2_1: -44452331
-      c_female2_2: -1822784701
-      c_female2_3: 681616082
-      c_female2_4: 1013329600
-      c_female2_5: -897704392
+      character_transparent_shadow_set (1)_0: 637256928
+      character_transparent_shadow_set (1)_1: 1269046395
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
