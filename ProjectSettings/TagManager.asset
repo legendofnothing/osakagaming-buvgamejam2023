@@ -47,6 +47,9 @@ TagManager:
   - name: Enemy
     uniqueID: 1677883539
     locked: 0
+  - name: Survivor
+    uniqueID: 2541044243
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

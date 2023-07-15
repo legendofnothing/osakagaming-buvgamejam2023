@@ -16,7 +16,7 @@ namespace Weapons {
             Unarmed,
         }
 
-        [TitleGroup("Config")] 
+        [TitleGroup("Config")]
         public Slot slot;
         public Type type; 
         [HideIf("slot", Slot.Unarmed)] public float damage;

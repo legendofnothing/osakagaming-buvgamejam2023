@@ -121,7 +121,7 @@ namespace Enemy {
             //animator.SetBool("IsMoving", false);
             
             float previouseSpeed = _agent.speed;
-            _agent.speed = 0.6f;
+            _agent.speed = 0.4f;
 
             yield return new WaitForSeconds(0.26f);
             canTakeDamage = false;
@@ -174,5 +174,7 @@ namespace Enemy {
                         Destroy(gameObject);
                     }));
         }
+
+        
     }
 }
