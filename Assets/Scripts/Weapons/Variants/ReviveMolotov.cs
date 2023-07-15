@@ -30,11 +30,13 @@ namespace Weapons.Variants {
             if (!_canAttack) return;
             _canAttack = false;
             amount--;
-            
+
             var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0;
             var molotovInst = Instantiate(molotovPrefab, transform.position, Quaternion.identity);
             _spriteRenderer.color -= new Color(0, 0, 0, 1);
+
+            CombatManager.instance.animator.SetTrigger("Throw");
 
             var s = DOTween.Sequence();
             s
@@ -45,17 +47,21 @@ namespace Weapons.Variants {
                     .OnComplete(() => {
                         var puddleInst = Instantiate(revivePuddle, mousePosition, Quaternion.identity);
                         puddleInst.transform.localScale = Vector3.one * radius;
-                    }))
-                .Append(DOVirtual.DelayedCall(delay, () => {
-                    transform.localPosition = _defaultPosition;
-                    _spriteRenderer.DOFade(1, 0.8f);
-                    if (amount > 0) {
-                        _canAttack = true;
-                    }
-                    else {
-                        CombatManager.instance.SwitchWeapon(Slot.Primary);
-                    }
-                }));
+                    }));
+
+            DOVirtual.DelayedCall(delay, () =>
+            {
+                transform.localPosition = _defaultPosition;
+                _spriteRenderer.DOFade(1, 0.8f);
+                if (amount > 0)
+                {
+                    _canAttack = true;
+                }
+                else
+                {
+                    CombatManager.instance.SwitchWeapon(Slot.Primary);
+                }
+            });
         }
 
         public override bool CanSwitch() {

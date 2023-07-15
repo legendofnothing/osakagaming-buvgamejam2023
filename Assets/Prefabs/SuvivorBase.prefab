@@ -194,7 +194,7 @@ MonoBehaviour:
   runAwaySpeed: 2
   runToPlayerSpeed: 4
   moveTo: {fileID: 6535413774056070629}
-  animator: {fileID: 0}
+  animator: {fileID: 6307865122642319143}
   _currentState: 0
 --- !u!114 &6535413774056070629
 MonoBehaviour:
