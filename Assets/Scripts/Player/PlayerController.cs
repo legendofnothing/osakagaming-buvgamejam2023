@@ -19,11 +19,15 @@ namespace Player {
 
         private Vector2 _moveInput;
         private Rigidbody2D rb;
+        private SpriteRenderer _BodySpriteRenderer;
+        private Animator _animator;
         
         private void Awake()
         {
             //manaManagerCS = FindObjectOfType<ManaManager>();
             rb = GetComponent<Rigidbody2D>();
+            _BodySpriteRenderer = _playerBody.GetComponent<SpriteRenderer>();
+            _animator = GetComponent<Animator>();
         }
 
         private void Start() {
@@ -47,12 +51,14 @@ namespace Player {
             if (Mathf.Abs(_moveInput.x) == 0 && Mathf.Abs(_moveInput.y) == 0)
             {
                 rb.drag = _stopDrag;
+                _animator.SetBool("IsMoving", false);
             }
             //If key is press
             if (Mathf.Abs(_moveInput.x) > 0 || Mathf.Abs(_moveInput.y) > 0)
             {
                 Move();
                 rb.drag = _moveDrag;
+                _animator.SetBool("IsMoving",true);
             }
         }
 
@@ -61,7 +67,8 @@ namespace Player {
         {        
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); //Get mouse postion
             float faceIndex = Mathf.Sign(mousePosition.x - transform.position.x);
-            _playerBody.transform.localScale = faceIndex <= 0 ? new Vector3(1, 1, 1) : new Vector3(-1, 1 ,1);
+            //_playerBody.transform.localScale = faceIndex <= 0 ? new Vector3(1, 1, 1) : new Vector3(-1, 1 ,1);
+            _BodySpriteRenderer.flipX = faceIndex <= 0 ? false : true;
         }
 
         private void TurnPlayerArm()

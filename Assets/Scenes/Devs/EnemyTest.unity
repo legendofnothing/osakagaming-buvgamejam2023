@@ -498,6 +498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1496441966297472576, guid: b538c386f88efb34f99072f653fb4585, type: 3}
+  enemies: []
   spawnPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -838,7 +839,7 @@ SpriteRenderer:
   m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.6886792, g: 0.620461, b: 0.620461, a: 0.20784314}
+  m_Color: {r: 0.6886792, g: 0.620461, b: 0.620461, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -919,6 +920,18 @@ PrefabInstance:
     - target: {fileID: 3610110062254732240, guid: 576d327ade04c134ca66a8536b657d9e, type: 3}
       propertyPath: m_Name
       value: CamSetup
+      objectReference: {fileID: 0}
+    - target: {fileID: 9028499215594379532, guid: 576d327ade04c134ca66a8536b657d9e, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9028499215594379532, guid: 576d327ade04c134ca66a8536b657d9e, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9028499215594379532, guid: 576d327ade04c134ca66a8536b657d9e, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

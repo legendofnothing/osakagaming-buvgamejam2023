@@ -20,17 +20,10 @@ namespace Entity {
             }
         }
 
-        public virtual void FaceTarget(GameObject body, GameObject target)
+        public virtual void FaceTarget(SpriteRenderer body, GameObject target)
         {
             float posDif = body.transform.position.x - target.transform.position.x;
-            if (posDif >= 1)
-            {
-                body.transform.localScale = new Vector3(-1, 1, 1);
-            }
-            else if (posDif < -1)
-            {
-                body.transform.localScale = new Vector3(1, 1, 1);
-            }
+            body.flipX = posDif >= 1 ? true : false;
         }
 
         protected virtual void Death() {

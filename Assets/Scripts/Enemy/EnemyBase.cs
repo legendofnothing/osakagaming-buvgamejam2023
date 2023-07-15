@@ -28,7 +28,7 @@ namespace Enemy {
 
         [TitleGroup("Refs")] 
         public EntityMoveTo moveTo;
-        public GameObject body;
+        public SpriteRenderer body;
 
         private GameObject _currentTarget;
         private NavMeshAgent _agent;
