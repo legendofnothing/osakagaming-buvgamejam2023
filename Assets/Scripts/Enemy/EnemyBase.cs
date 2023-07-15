@@ -26,6 +26,7 @@ namespace Enemy {
         public EntityMoveTo moveTo;
 
         private GameObject _currentTarget;
+        private GameObject _actorBody;
         private NavMeshAgent _agent;
         private bool _canSwitchState = true;
         private bool _canAttack = true;
@@ -37,6 +38,7 @@ namespace Enemy {
         protected override void Start() {
             base.Start();
             _agent = GetComponent<NavMeshAgent>();
+            _actorBody = this.gameObject.transform.GetChild(0).gameObject;
             _defaultSpeed = _agent.speed;
         }
         
@@ -56,6 +58,7 @@ namespace Enemy {
             }
             
             if (_currentTarget != null) {
+                FaceTarget(_actorBody, _currentTarget);
                 moveTo.SetDestination(_currentTarget);
 
                 if (Math.Abs(_agent.remainingDistance - _agent.stoppingDistance) < 0.2f && _canAttack) {

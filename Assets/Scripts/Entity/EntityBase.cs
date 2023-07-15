@@ -20,6 +20,19 @@ namespace Entity {
             }
         }
 
+        public virtual void FaceTarget(GameObject body, GameObject target)
+        {
+            float posDif = body.transform.position.x - target.transform.position.x;
+            if (posDif >= 1)
+            {
+                body.transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else if (posDif < -1)
+            {
+                body.transform.localScale = new Vector3(1, 1, 1);
+            }
+        }
+
         protected virtual void Death() {
             
         }
