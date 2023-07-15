@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Core.EventDispatcher;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using Survivor;
 using UnityEngine;
 using EventType = Core.EventDispatcher.EventType;
@@ -25,7 +26,7 @@ namespace PlayerCS {
         }
 
         private void OnPlayerHurt() {
-            if (survivors.Count < 1) return;
+            if (survivors.IsNullOrEmpty()) return;
             var survivorInst = survivors[^1];
             survivors.Remove(survivorInst);
             survivorInst.TakeDamage(9999999f);

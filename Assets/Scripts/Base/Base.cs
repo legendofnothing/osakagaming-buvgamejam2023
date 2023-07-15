@@ -12,10 +12,14 @@ namespace Base {
 
         [TitleGroup("Info")] 
         [ReadOnly] public int survivorCounts;
+        [ReadOnly] public int peakedSurvivorCounts;
         
         public void Start() {
             currentHp = hp;
-            this.SubscribeListener(EventType.OnSurvivorEnteredBase, _=>survivorCounts++);
+            this.SubscribeListener(EventType.OnSurvivorEnteredBase, _ => {
+                survivorCounts++;
+                if (peakedSurvivorCounts < survivorCounts) peakedSurvivorCounts = survivorCounts;
+            });
         }
 
         public void TakeDamage(float amount) {
