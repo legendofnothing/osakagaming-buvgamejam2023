@@ -179,7 +179,7 @@ Transform:
   - {fileID: 4324569536075339246}
   - {fileID: 1812126637929595196}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8085478879497110729
 SpriteRenderer:
@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8919742aed74d346baa48d67c0ff34e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1800
+  moveSpeed: 2000
   maxSpeed: 6
   currentSpeed: 0
   _turnSpeed: 12
