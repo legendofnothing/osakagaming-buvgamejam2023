@@ -116,7 +116,6 @@ namespace Survivor {
 
         private void TurnToTarget()
         {
-            Debug.Log("sdasd");
             var posDif = transform.position.x - _target.transform.position.x;
             bodyRenderer.flipX = posDif <= 1;
 

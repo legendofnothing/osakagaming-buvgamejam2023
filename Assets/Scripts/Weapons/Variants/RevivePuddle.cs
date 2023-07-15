@@ -12,15 +12,17 @@ namespace Weapons.Variants {
         public float duration = 6f;
 
         private bool _canConvert = true;
+        private PolygonCollider2D _collider2D;
 
         private void Start() {
-            _canConvert = false;
+            _collider2D = GetComponent<PolygonCollider2D>();
+            _collider2D.enabled = false;
             transform.localScale = Vector3.zero;
 
             transform.DOScale(1, 0.8f)
                 .SetEase(Ease.OutExpo)
                 .OnComplete(() => {
-                    _canConvert = true;
+                    _collider2D.enabled = true;
                     
                     DOVirtual.DelayedCall(duration, () => {
                         _canConvert = false;

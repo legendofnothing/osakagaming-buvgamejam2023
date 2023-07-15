@@ -1,8 +1,11 @@
 ﻿using System;
+using Core.EventDispatcher;
 using DG.Tweening;
 using Player;
 using Sirenix.OdinInspector;
+using UI;
 using UnityEngine;
+using EventType = Core.EventDispatcher.EventType;
 
 namespace Weapons.Variants {
     public class ReviveMolotov : WeaponBase {
@@ -24,6 +27,17 @@ namespace Weapons.Variants {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _defaultPosition = transform.localPosition;
             amount = startingAmount;
+            this.SendMessage(EventType.OnTextUIChange, new TextMessage() {
+                type = TextUI.TextType.MolotovCount,
+                message = $"x{amount}"
+            });
+            this.SubscribeListener(EventType.OnMolotovAdded, _ => {
+                amount++;
+                this.SendMessage(EventType.OnTextUIChange, new TextMessage() {
+                    type = TextUI.TextType.MolotovCount,
+                    message = $"x{amount}"
+                });
+            });
         }
 
         public override void Attack() {
@@ -32,6 +46,10 @@ namespace Weapons.Variants {
             amount--;
 
             CombatManager.instance.animator.SetTrigger("Throw");
+            this.SendMessage(EventType.OnTextUIChange, new TextMessage() {
+                type = TextUI.TextType.MolotovCount,
+                message = $"x{amount}"
+            });
 
             DOVirtual.DelayedCall(0.3f, () =>
             {

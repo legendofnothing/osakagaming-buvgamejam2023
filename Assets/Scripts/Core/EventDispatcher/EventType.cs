@@ -15,5 +15,10 @@ namespace Core.EventDispatcher {
         OnPlayerTakeDamage,
         
         OnEnemyDie,
+        OnBarUIChange,
+        OnTextUIChange,
+        OnWeaponChange,
+        OnMolotovAdded,
+        OnCureReset,
     }
 }
