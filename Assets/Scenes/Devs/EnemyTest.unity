@@ -131,10 +131,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1990841410952680986, guid: 6035924d1b053e54e9e225c932190e8f, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2235589556035882687, guid: 6035924d1b053e54e9e225c932190e8f, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -186,10 +182,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7798666442135316547, guid: 6035924d1b053e54e9e225c932190e8f, type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 1400075334}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6035924d1b053e54e9e225c932190e8f, type: 3}
 --- !u!1001 &85690211
 PrefabInstance:
@@ -843,46 +836,6 @@ MonoBehaviour:
   m_Area: 0
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
---- !u!1 &1400075325 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7798666442135316547, guid: 6035924d1b053e54e9e225c932190e8f, type: 3}
-  m_PrefabInstance: {fileID: 72084761}
-  m_PrefabAsset: {fileID: 0}
---- !u!70 &1400075334
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1400075325}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.010614634, y: -0.15391558}
-  m_Size: {x: 0.55216455, y: 0.6773282}
-  m_Direction: 0
 --- !u!1 &1704147570
 GameObject:
   m_ObjectHideFlags: 0

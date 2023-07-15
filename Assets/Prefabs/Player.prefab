@@ -151,7 +151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2235589556035882687}
   - component: {fileID: 8085478879497110729}
-  - component: {fileID: 1990841410952680986}
+  - component: {fileID: 3912985668089679464}
   - component: {fileID: 1416142148387524952}
   - component: {fileID: 1695037006741971561}
   - component: {fileID: 7130807264560161515}
@@ -179,7 +179,7 @@ Transform:
   - {fileID: 4324569536075339246}
   - {fileID: 1812126637929595196}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8085478879497110729
 SpriteRenderer:
@@ -233,8 +233,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &1990841410952680986
-CircleCollider2D:
+--- !u!70 &3912985668089679464
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -265,9 +265,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_Offset: {x: -0.010614634, y: -0.15391558}
+  m_Size: {x: 0.55216455, y: 0.6773282}
+  m_Direction: 0
 --- !u!50 &1416142148387524952
 Rigidbody2D:
   serializedVersion: 4
