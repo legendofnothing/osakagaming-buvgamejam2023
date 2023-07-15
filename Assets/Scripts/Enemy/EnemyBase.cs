@@ -70,7 +70,6 @@ namespace Enemy {
                 FaceTarget(body, _currentTarget);
                 moveTo.SetDestination(_currentTarget);
                 
-
                 if (Math.Abs(_agent.remainingDistance - _agent.stoppingDistance) < 0.2f && _canAttack) {
                     _canAttack = false;
                     Attack();
@@ -105,8 +104,7 @@ namespace Enemy {
             
             base.TakeDamage(amount);
             StartCoroutine(Recover());
-
-
+            
             if (currentHP <= 0) return;
             _currSlowdownTween?.Kill();
             _agent.speed *= 2f / 3f;
