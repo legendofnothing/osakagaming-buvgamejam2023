@@ -17,6 +17,12 @@ namespace Player {
 
         private Tween _currentKnockbackTween;
 
+        private void Awake() {
+            foreach (var weapon in weapons) {
+                weapon.gameObject.SetActive(true);
+            }
+        }
+
         private void Start() {
             _rb = GetComponent<Rigidbody2D>();
             
@@ -48,7 +54,7 @@ namespace Player {
             }
         }
 
-        private void SwitchWeapon(WeaponBase.Slot targetSlot) {
+        public void SwitchWeapon(WeaponBase.Slot targetSlot) {
             if (_currentWeapon.slot == targetSlot) return;
             var nextWeapon = weapons.Find(weapon => weapon.slot == targetSlot);
             if (!nextWeapon.CanSwitch()) return;
