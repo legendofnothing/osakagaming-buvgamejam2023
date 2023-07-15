@@ -265,7 +265,7 @@ Transform:
   - {fileID: 1812126637929595196}
   - {fileID: 7382757368012034881}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8085478879497110729
 SpriteRenderer:
@@ -782,6 +782,10 @@ PrefabInstance:
       propertyPath: revivePuddle
       value: 
       objectReference: {fileID: 1727671300179322867, guid: caabea9bbd6442f4d82ab93dfc2d5af3, type: 3}
+    - target: {fileID: 7958415194619526949, guid: 289b49c343da85e47aa759ebe0a56ebe, type: 3}
+      propertyPath: molotovPrefab
+      value: 
+      objectReference: {fileID: 2367373758718227076, guid: 1f995630fd9b8a54d995b76111b364fc, type: 3}
     - target: {fileID: 7958415194619526949, guid: 289b49c343da85e47aa759ebe0a56ebe, type: 3}
       propertyPath: startingAmount
       value: 3

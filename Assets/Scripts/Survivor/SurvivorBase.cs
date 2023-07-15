@@ -48,6 +48,7 @@ namespace Survivor {
         private Vector3 _defaultPosition;
         private bool _hasSwitched;
         private bool _hasEnterBase;
+        private Tween _currentTween;
 
         protected override void Start() {
             base.Start();
@@ -97,7 +98,7 @@ namespace Survivor {
 
                         if (_agent.remainingDistance < _agent.stoppingDistance && !_hasSwitched) {
                             _hasSwitched = true;
-                            transform.DOScale(0.6f, 1f);
+                            _currentTween = transform.DOScale(0.6f, 1f);
                             this.SendMessage(EventType.OnSurvivorAdded, this);
                         }
                         break;
@@ -144,6 +145,7 @@ namespace Survivor {
         }
 
         protected override void Death() {
+            _currentTween?.Kill();
             Destroy(gameObject);
         }
     }

@@ -10,6 +10,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
 using EventType = Core.EventDispatcher.EventType;
+using Random = UnityEngine.Random;
 
 namespace Enemy {
     public class EnemyBase : EntityBase {
@@ -46,6 +47,8 @@ namespace Enemy {
             _agent = GetComponent<NavMeshAgent>();
             _defaultSpeed = _agent.speed;
             animator.SetBool("IsMoving", true);
+
+            _agent.avoidancePriority = Random.Range(20, 70);
         }
         
         private void Update() {
