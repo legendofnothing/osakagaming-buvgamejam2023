@@ -27,7 +27,7 @@ namespace Manager {
             for (var i = 0; i < amount; i++) {
                 var randomSpawnPoint = spawnPoints.OrderBy(_ => rnd.Next()).FirstOrDefault();
                 if (randomSpawnPoint != null) {
-                    Instantiate(survivorPrefab, randomSpawnPoint.position * Random.insideUnitCircle * 0.2f, Quaternion.identity);
+                    Instantiate(survivorPrefab, randomSpawnPoint.position , Quaternion.identity);
                 }
             }
         }
