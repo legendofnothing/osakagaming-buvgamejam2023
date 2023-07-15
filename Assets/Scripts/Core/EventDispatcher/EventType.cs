@@ -5,10 +5,15 @@ namespace Core.EventDispatcher {
     public enum EventType {
         None = 0,
         
+        OnTurnBegin,
+        OnTurnEnd,
+        
         OnSurvivorAdded,
         OnSurvivorDecreased,
         OnSurvivorEnteredBase,
         
         OnPlayerTakeDamage,
+        
+        OnEnemyDie,
     }
 }

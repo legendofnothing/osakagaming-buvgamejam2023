@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Linq;
 using Core;
+using Core.EventDispatcher;
 using DG.Tweening;
 using Entity;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
+using EventType = Core.EventDispatcher.EventType;
 
 namespace Enemy {
     public class EnemyBase : EntityBase {
@@ -26,12 +28,13 @@ namespace Enemy {
 
         [TitleGroup("Refs")] 
         public EntityMoveTo moveTo;
+        public GameObject body;
 
         private GameObject _currentTarget;
-        private GameObject _actorBody;
         private NavMeshAgent _agent;
         private bool _canSwitchState = true;
         private bool _canAttack = true;
+        private bool _hasChanged;
         private RaycastHit2D[] _targets;
         private float _defaultSpeed;
 
@@ -40,7 +43,6 @@ namespace Enemy {
         protected override void Start() {
             base.Start();
             _agent = GetComponent<NavMeshAgent>();
-            _actorBody = this.gameObject.transform.GetChild(0).gameObject;
             _defaultSpeed = _agent.speed;
         }
         
@@ -60,7 +62,7 @@ namespace Enemy {
             }
             
             if (_currentTarget != null) {
-                FaceTarget(_actorBody, _currentTarget);
+                FaceTarget(body, _currentTarget);
                 moveTo.SetDestination(_currentTarget);
 
                 if (Math.Abs(_agent.remainingDistance - _agent.stoppingDistance) < 0.2f && _canAttack) {
@@ -106,10 +108,13 @@ namespace Enemy {
 
         protected override void Death() {
             _currSlowdownTween?.Kill();
+            this.SendMessage(EventType.OnEnemyDie, this);
             Destroy(gameObject);
         }
 
         public void Convert() {
+            if (_hasChanged) return;
+            _hasChanged = true;
             _canSwitchState = false;
             _canAttack = false;
             canTakeDamage = false;
@@ -122,10 +127,11 @@ namespace Enemy {
                     _currentTarget = null;
                 }))
                 .AppendInterval(0.8f)
-                .Append(transform.DOShakePosition(4f))
+                .Append(transform.DOShakePosition(4f, 0.5f, 10, 90, false, false))
                 .Append(transform.DOScale(0, 1.4f).SetEase(Ease.InElastic))
                 .OnComplete(() => {
                     Instantiate(survivorPrefab, transform.position, Quaternion.identity);
+                    this.SendMessage(EventType.OnEnemyDie, this);
                     Destroy(gameObject);
                 });
         }
