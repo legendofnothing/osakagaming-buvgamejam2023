@@ -31,23 +31,30 @@ namespace Weapons.Variants {
             _canAttack = false;
             amount--;
 
-            var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.z = 0;
-            var molotovInst = Instantiate(molotovPrefab, transform.position, Quaternion.identity);
-            _spriteRenderer.color -= new Color(0, 0, 0, 1);
-
             CombatManager.instance.animator.SetTrigger("Throw");
 
-            var s = DOTween.Sequence();
-            s
-                .Append(molotovInst.transform.DOMove(mousePosition, Vector3.Distance(mousePosition, transform.position) / 2)
-                    .SetEase(throwableEaseType))
-                .Append(molotovInst.GetComponent<SpriteRenderer>()
-                    .DOFade(0, 0.3f)
-                    .OnComplete(() => {
-                        var puddleInst = Instantiate(revivePuddle, mousePosition, Quaternion.identity);
-                        puddleInst.transform.localScale = Vector3.one * radius;
-                    }));
+            DOVirtual.DelayedCall(0.3f, () =>
+            {
+                var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mousePosition.z = 0;
+                var molotovInst = Instantiate(molotovPrefab, transform.position, Quaternion.identity);
+                _spriteRenderer.color -= new Color(0, 0, 0, 1);
+
+                
+
+                var s = DOTween.Sequence();
+                s
+                    .Append(molotovInst.transform.DOMove(mousePosition, Vector3.Distance(mousePosition, transform.position) / 2)
+                        .SetEase(throwableEaseType))
+                    .Append(molotovInst.GetComponent<SpriteRenderer>()
+                        .DOFade(0, 0.3f)
+                        .OnComplete(() => {
+                            var puddleInst = Instantiate(revivePuddle, mousePosition, Quaternion.identity);
+                            puddleInst.transform.localScale = Vector3.one * radius;
+                        }));
+            });
+
+            
 
             DOVirtual.DelayedCall(delay, () =>
             {
