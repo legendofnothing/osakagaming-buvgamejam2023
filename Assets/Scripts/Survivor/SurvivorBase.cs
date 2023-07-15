@@ -40,6 +40,7 @@ namespace Survivor {
 
         [TitleGroup("Refs")] 
         public EntityMoveTo moveTo;
+        public Animator animator;
         
         private NavMeshAgent _agent;
         [ReadOnly] [SerializeField] private SurvivorState _currentState;
@@ -83,6 +84,8 @@ namespace Survivor {
 
                 switch (_currentState) {
                     case SurvivorState.RunAway:
+                        animator.SetBool("IsMoving", true);
+
                         if (Math.Abs(_agent.speed - runAwaySpeed) > 0.1f) _agent.speed = runAwaySpeed;
                         
                         if (_agent.velocity == Vector3.zero) {
@@ -90,7 +93,9 @@ namespace Survivor {
                             moveTo.SetDestination(position);
                         }
                         break;
-                    case SurvivorState.RunToPlayer:
+                    case SurvivorState.RunToPlayer:                       
+                        animator.SetBool("IsMoving", true);
+
                         if (Math.Abs(_agent.speed - runToPlayerSpeed) > 0.1f) _agent.speed = runToPlayerSpeed;
                         var movePos = Vector3.MoveTowards(_currentTarget.transform.position, transform.position, 0.5f);
                         moveTo.SetDestination(movePos);
@@ -102,9 +107,11 @@ namespace Survivor {
                         }
                         break;
                     default:
-                        if (Math.Abs(_agent.speed - wanderSpeed) > 0.1f) _agent.speed = wanderSpeed;
-                    
+                        if (Math.Abs(_agent.speed - wanderSpeed) > 0.1f) _agent.speed = wanderSpeed; animator.SetBool("IsMoving", true);
+                        
+
                         if (_agent.velocity == Vector3.zero) {
+                            animator.SetBool("IsMoving", false);
                             var position = _defaultPosition * Random.insideUnitCircle * 2f;
                             moveTo.SetDestination(position);
                         }
@@ -114,6 +121,7 @@ namespace Survivor {
             else {
                var baseTarget = Physics2D.CircleCast(transform.position, enterBaseRadius, Vector2.zero, 0, baseLayer);
                if (baseTarget.collider != null) {
+                    
                    moveTo.SetDestination(baseTarget.collider.gameObject);
                    
                    if (_agent.velocity == Vector3.zero) {
