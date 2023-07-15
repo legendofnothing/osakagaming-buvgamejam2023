@@ -66,9 +66,19 @@ namespace Player {
         private void Flip()
         {        
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); //Get mouse postion
-            float faceIndex = Mathf.Sign(mousePosition.x - transform.position.x);
-            //_playerBody.transform.localScale = faceIndex <= 0 ? new Vector3(1, 1, 1) : new Vector3(-1, 1 ,1);
-            _BodySpriteRenderer.flipX = faceIndex <= 0 ? false : true;
+            //float faceIndex = Mathf.Sign(mousePosition.x - transform.position.x);
+            ////_playerBody.transform.localScale = faceIndex <= 0 ? new Vector3(1, 1, 1) : new Vector3(-1, 1 ,1);
+            //_BodySpriteRenderer.flipX = faceIndex <= 0 ? false : true;
+
+            float faceIndex = mousePosition.x - transform.position.x;
+            if (faceIndex <= -1)
+            {
+                _BodySpriteRenderer.flipX = false;
+            }
+            else if(faceIndex > 1)
+            {
+                _BodySpriteRenderer.flipX = true;
+            }
         }
 
         private void TurnPlayerArm()

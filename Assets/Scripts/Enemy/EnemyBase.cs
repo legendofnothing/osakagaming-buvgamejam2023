@@ -28,7 +28,8 @@ namespace Enemy {
 
         [TitleGroup("Refs")] 
         public EntityMoveTo moveTo;
-        public SpriteRenderer body;
+        public SpriteRenderer body;       
+        public Animator animator;
 
         private GameObject _currentTarget;
         private NavMeshAgent _agent;
@@ -44,6 +45,7 @@ namespace Enemy {
             base.Start();
             _agent = GetComponent<NavMeshAgent>();
             _defaultSpeed = _agent.speed;
+            animator.SetBool("IsMoving", true);
         }
         
         private void Update() {
@@ -64,6 +66,7 @@ namespace Enemy {
             if (_currentTarget != null) {
                 FaceTarget(body, _currentTarget);
                 moveTo.SetDestination(_currentTarget);
+                
 
                 if (Math.Abs(_agent.remainingDistance - _agent.stoppingDistance) < 0.2f && _canAttack) {
                     _canAttack = false;
@@ -96,14 +99,42 @@ namespace Enemy {
         }
 
         public override void TakeDamage(float amount) {
-            base.TakeDamage(amount);
             
+            base.TakeDamage(amount);
+            StartCoroutine(Recover());
+
+
             if (currentHP <= 0) return;
             _currSlowdownTween?.Kill();
             _agent.speed *= 2f / 3f;
             _currSlowdownTween = DOVirtual.Float(_agent.speed, _defaultSpeed, 2.4f, value => {
                 _agent.speed = value;
             });
+        }
+
+        public override IEnumerator Recover()
+        {
+            
+            animator.SetBool("IsMoving", false);
+            
+            float previouseSpeed = _agent.speed;
+            _agent.speed = 0.6f;
+
+            yield return new WaitForSeconds(0.26f);
+            canTakeDamage = false;
+            GetComponent<BoxCollider2D>().enabled = false;
+            float recoverTimeCount = 0;
+            while (recoverTimeCount < recoverTime)
+            {
+                recoverTimeCount += Time.deltaTime;
+                yield return null;
+            }
+
+            _agent.speed = previouseSpeed;
+
+            animator.SetBool("IsMoving", true);
+            GetComponent<BoxCollider2D>().enabled = true;
+            canTakeDamage = true;
         }
 
         protected override void Death() {
