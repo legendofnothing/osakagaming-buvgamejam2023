@@ -10,13 +10,20 @@ namespace UI {
     {
         public enum TextType {
             MolotovCount,
+            FollowingCount,
+            DefendersCount,
+            ResearchersCount,
+            
+            TotalSurvivorsInBase,
+            DefenderLeft,
+            CureProgress,
         }
 
         [Header("Config")] 
         public TextType type;
         public TextMeshProUGUI text;
 
-        private void Start() {
+        private void Awake() {
             this.SubscribeListener(EventType.OnTextUIChange, message => {
                 var converted = (TextMessage)message;
                 if (converted.type == type) {

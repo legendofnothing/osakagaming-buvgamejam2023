@@ -31,6 +31,13 @@ namespace Weapons.Variants {
                 type = TextUI.TextType.MolotovCount,
                 message = $"x{amount}"
             });
+            this.SubscribeListener(EventType.OnMolotovAdded, _ => {
+                amount++;
+                this.SendMessage(EventType.OnTextUIChange, new TextMessage() {
+                    type = TextUI.TextType.MolotovCount,
+                    message = $"x{amount}"
+                });
+            });
         }
 
         public override void Attack() {

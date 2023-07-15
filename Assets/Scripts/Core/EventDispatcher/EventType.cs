@@ -18,5 +18,7 @@ namespace Core.EventDispatcher {
         OnBarUIChange,
         OnTextUIChange,
         OnWeaponChange,
+        OnMolotovAdded,
+        OnCureReset,
     }
 }
