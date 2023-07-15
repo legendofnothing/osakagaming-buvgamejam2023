@@ -101,7 +101,7 @@ namespace Enemy {
         }
 
         public override void TakeDamage(float amount) {
-            
+            if (!canTakeDamage) return;
             base.TakeDamage(amount);
             StartCoroutine(Recover());
             
@@ -150,6 +150,8 @@ namespace Enemy {
             _canSwitchState = false;
             _canAttack = false;
             canTakeDamage = false;
+            animator.SetBool("IsMoving", false);
+
             var s = DOTween.Sequence();
             s
                 .Append(DOVirtual.Float(_agent.speed, 0, 2f, value => {
@@ -159,13 +161,15 @@ namespace Enemy {
                     _currentTarget = null;
                 }))
                 .AppendInterval(0.8f)
-                .Append(transform.DOShakePosition(4f, 0.5f, 10, 90, false, false))
-                .Append(transform.DOScale(0, 1.4f).SetEase(Ease.InElastic))
-                .OnComplete(() => {
-                    Instantiate(survivorPrefab, transform.position, Quaternion.identity);
-                    this.SendMessage(EventType.OnEnemyDie, this);
-                    Destroy(gameObject);
-                });
+                .Append(transform.DOShakePosition(4f, 0.15f, 20, 90, false, false))
+                .Insert(3.2f, transform
+                    .DOScale(0, 1.4f).SetEase(Ease.InElastic)
+                    .OnComplete(() => {
+                        s.Kill();
+                        Instantiate(survivorPrefab, transform.position, Quaternion.identity);
+                        this.SendMessage(EventType.OnEnemyDie, this);
+                        Destroy(gameObject);
+                    }));
         }
     }
 }
