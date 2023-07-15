@@ -71,7 +71,6 @@ namespace Enemy {
                 FaceTarget(body, _currentTarget);
                 moveTo.SetDestination(_currentTarget);
                 
-
                 if (Math.Abs(_agent.remainingDistance - _agent.stoppingDistance) < 0.2f && _canAttack) {
                     _canAttack = false;
                     Attack();
@@ -103,7 +102,7 @@ namespace Enemy {
         }
 
         public override void TakeDamage(float amount) {
-            
+            if (!canTakeDamage) return;
             base.TakeDamage(amount);
             StartCoroutine(Recover());
             animator.SetTrigger("hurt");
@@ -154,22 +153,26 @@ namespace Enemy {
             _canSwitchState = false;
             _canAttack = false;
             canTakeDamage = false;
+            animator.SetBool("IsMoving", false);
+
             var s = DOTween.Sequence();
             s
-                .Append(DOVirtual.Float(_agent.speed, 0, 2f, value => {
+                .Append(DOVirtual.Float(_agent.speed, 0, 4f, value => {
                     _agent.speed = value;
                 }).OnComplete(() => {
                     _agent.enabled = false;
                     _currentTarget = null;
                 }))
                 .AppendInterval(0.8f)
-                .Append(transform.DOShakePosition(4f, 0.5f, 10, 90, false, false))
-                .Append(transform.DOScale(0, 1.4f).SetEase(Ease.InElastic))
-                .OnComplete(() => {
-                    Instantiate(survivorPrefab, transform.position, Quaternion.identity);
-                    this.SendMessage(EventType.OnEnemyDie, this);
-                    Destroy(gameObject);
-                });
+                .Append(transform.DOShakePosition(4f, 0.15f, 20, 90, false, false))
+                .Insert(3.2f, transform
+                    .DOScale(0, 1.4f).SetEase(Ease.InElastic)
+                    .OnComplete(() => {
+                        s.Kill();
+                        Instantiate(survivorPrefab, transform.position, Quaternion.identity);
+                        this.SendMessage(EventType.OnEnemyDie, this);
+                        Destroy(gameObject);
+                    }));
         }
     }
 }

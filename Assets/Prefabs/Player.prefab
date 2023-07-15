@@ -329,7 +329,7 @@ Transform:
   - {fileID: 1812126637929595196}
   - {fileID: 7382757368012034881}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8085478879497110729
 SpriteRenderer:
@@ -491,6 +491,7 @@ MonoBehaviour:
   - {fileID: 267867220989326783}
   - {fileID: 2150536311135189499}
   - {fileID: 5235363117099822615}
+  animator: {fileID: 6825700945001746189}
 --- !u!114 &36398532068027328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -633,42 +634,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1812126637929595196}
     m_Modifications:
-    - target: {fileID: 561891644131532408, guid: 99e0a32d1b1222d42b7f3bfe35704306, type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
-    - target: {fileID: 1117307657923050085, guid: 99e0a32d1b1222d42b7f3bfe35704306, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.523
-      objectReference: {fileID: 0}
-    - target: {fileID: 1117307657923050085, guid: 99e0a32d1b1222d42b7f3bfe35704306, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.117
-      objectReference: {fileID: 0}
-    - target: {fileID: 1117307657923050085, guid: 99e0a32d1b1222d42b7f3bfe35704306, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1117307657923050085, guid: 99e0a32d1b1222d42b7f3bfe35704306, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1117307657923050085, guid: 99e0a32d1b1222d42b7f3bfe35704306, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1117307657923050085, guid: 99e0a32d1b1222d42b7f3bfe35704306, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1117307657923050085, guid: 99e0a32d1b1222d42b7f3bfe35704306, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 1117307657923050085, guid: 99e0a32d1b1222d42b7f3bfe35704306, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4041434086269888669, guid: 99e0a32d1b1222d42b7f3bfe35704306, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -713,42 +678,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4618237581975400729, guid: 99e0a32d1b1222d42b7f3bfe35704306, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5085359109739953557, guid: 99e0a32d1b1222d42b7f3bfe35704306, type: 3}
       propertyPath: m_Name
       value: Shotgun
       objectReference: {fileID: 0}
-    - target: {fileID: 5085359109739953557, guid: 99e0a32d1b1222d42b7f3bfe35704306, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8084567912881774997, guid: 99e0a32d1b1222d42b7f3bfe35704306, type: 3}
-      propertyPath: shell
-      value: 
-      objectReference: {fileID: 3345712863797639695, guid: c99e4fec96192fe468ee39c095706457, type: 3}
-    - target: {fileID: 8084567912881774997, guid: 99e0a32d1b1222d42b7f3bfe35704306, type: 3}
-      propertyPath: reloadTime
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8084567912881774997, guid: 99e0a32d1b1222d42b7f3bfe35704306, type: 3}
-      propertyPath: shootPoint
-      value: 
-      objectReference: {fileID: 8936541453032582735}
     - target: {fileID: 8084567912881774997, guid: 99e0a32d1b1222d42b7f3bfe35704306, type: 3}
       propertyPath: playerHands
       value: 
       objectReference: {fileID: 2098142983083593351}
-    - target: {fileID: 8084567912881774997, guid: 99e0a32d1b1222d42b7f3bfe35704306, type: 3}
-      propertyPath: spreadAngle
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 8084567912881774997, guid: 99e0a32d1b1222d42b7f3bfe35704306, type: 3}
-      propertyPath: knockbackForce
-      value: 1250
-      objectReference: {fileID: 0}
-    - target: {fileID: 8084567912881774997, guid: 99e0a32d1b1222d42b7f3bfe35704306, type: 3}
-      propertyPath: interactLayers.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -770,11 +711,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4041434086269888669, guid: 99e0a32d1b1222d42b7f3bfe35704306, type: 3}
   m_PrefabInstance: {fileID: 8324200772096807978}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &8936541453032582735 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1117307657923050085, guid: 99e0a32d1b1222d42b7f3bfe35704306, type: 3}
-  m_PrefabInstance: {fileID: 8324200772096807978}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8334409282624980702
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -786,10 +722,6 @@ PrefabInstance:
     - target: {fileID: 2593949170520231730, guid: 289b49c343da85e47aa759ebe0a56ebe, type: 3}
       propertyPath: m_Name
       value: ReviveMolotov
-      objectReference: {fileID: 0}
-    - target: {fileID: 2593949170520231730, guid: 289b49c343da85e47aa759ebe0a56ebe, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3681881699963655376, guid: 289b49c343da85e47aa759ebe0a56ebe, type: 3}
       propertyPath: m_RootOrder
@@ -836,32 +768,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7958415194619526949, guid: 289b49c343da85e47aa759ebe0a56ebe, type: 3}
-      propertyPath: delay
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7958415194619526949, guid: 289b49c343da85e47aa759ebe0a56ebe, type: 3}
       propertyPath: radius
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7958415194619526949, guid: 289b49c343da85e47aa759ebe0a56ebe, type: 3}
-      propertyPath: revivePuddle
-      value: 
-      objectReference: {fileID: 1727671300179322867, guid: caabea9bbd6442f4d82ab93dfc2d5af3, type: 3}
-    - target: {fileID: 7958415194619526949, guid: 289b49c343da85e47aa759ebe0a56ebe, type: 3}
-      propertyPath: molotovPrefab
-      value: 
-      objectReference: {fileID: 2367373758718227076, guid: 1f995630fd9b8a54d995b76111b364fc, type: 3}
-    - target: {fileID: 7958415194619526949, guid: 289b49c343da85e47aa759ebe0a56ebe, type: 3}
-      propertyPath: startingAmount
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7958415194619526949, guid: 289b49c343da85e47aa759ebe0a56ebe, type: 3}
-      propertyPath: throwableEaseType
-      value: 27
-      objectReference: {fileID: 0}
-    - target: {fileID: 7958415194619526949, guid: 289b49c343da85e47aa759ebe0a56ebe, type: 3}
-      propertyPath: interactLayers.m_Bits
-      value: 128
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

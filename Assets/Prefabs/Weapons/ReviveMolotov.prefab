@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2593949170520231730}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -100,5 +100,16 @@ MonoBehaviour:
   slot: 1
   type: 1
   damage: 0
-  throwableEaseType: 0
+  speed: 1800
+  maxSpeed: 8
+  interactLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  throwableEaseType: 27
   throwableDuration: 0
+  molotovPrefab: {fileID: 2367373758718227076, guid: 1f995630fd9b8a54d995b76111b364fc, type: 3}
+  revivePuddle: {fileID: 1727671300179322867, guid: caabea9bbd6442f4d82ab93dfc2d5af3, type: 3}
+  delay: 0.4
+  startingAmount: 3
+  radius: 2
+  amount: 0
