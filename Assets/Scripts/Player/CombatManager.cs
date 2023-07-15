@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Core;
+using Core.EventDispatcher;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Weapons;
+using EventType = Core.EventDispatcher.EventType;
 
 namespace Player {
     public class CombatManager : Singleton<CombatManager> {
@@ -63,6 +65,7 @@ namespace Player {
             nextWeapon.gameObject.SetActive(true);
             _currentWeapon.gameObject.SetActive(false);
             _currentWeapon = nextWeapon;
+            this.SendMessage(EventType.OnWeaponChange, targetSlot);
             PlayerMovement.instance.currentSpeed = _currentWeapon.speed;
             PlayerMovement.instance.maxSpeed = _currentWeapon.maxSpeed;
         }
