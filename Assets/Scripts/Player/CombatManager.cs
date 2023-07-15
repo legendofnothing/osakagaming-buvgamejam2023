@@ -15,6 +15,8 @@ namespace Player {
         private Rigidbody2D _rb;
         private WeaponBase _currentWeapon;
 
+        public Animator animator;
+
         private Tween _currentKnockbackTween;
 
         private void Awake() {

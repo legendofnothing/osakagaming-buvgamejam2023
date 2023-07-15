@@ -28,6 +28,7 @@ namespace Weapons.Variants {
 
             _canAttack = false;
             CombatManager.instance.Knockback(playerHands.transform.right, knockbackForce);
+            CombatManager.instance.animator.SetTrigger("ShootShotgun");
 
             for (var i = 0; i < amountOfShots; i++) {
                 shootPoint.localEulerAngles =
