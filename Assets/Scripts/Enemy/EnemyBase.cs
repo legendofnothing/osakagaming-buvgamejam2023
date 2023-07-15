@@ -154,7 +154,7 @@ namespace Enemy {
 
             var s = DOTween.Sequence();
             s
-                .Append(DOVirtual.Float(_agent.speed, 0, 2f, value => {
+                .Append(DOVirtual.Float(_agent.speed, 0, 4f, value => {
                     _agent.speed = value;
                 }).OnComplete(() => {
                     _agent.enabled = false;

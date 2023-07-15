@@ -11,13 +11,27 @@ namespace Weapons.Variants {
         public LayerMask enemyLayer;
         public float duration = 6f;
 
+        private bool _canConvert = true;
+
         private void Start() {
-            DOVirtual.DelayedCall(duration, () => {
-                GetComponent<SpriteRenderer>().DOFade(0, 1.8f).OnComplete(() => Destroy(gameObject));
-            });
+            _canConvert = false;
+            transform.localScale = Vector3.zero;
+
+            transform.DOScale(1, 0.8f)
+                .SetEase(Ease.OutExpo)
+                .OnComplete(() => {
+                    _canConvert = true;
+                    
+                    DOVirtual.DelayedCall(duration, () => {
+                        _canConvert = false;
+                        GetComponent<SpriteRenderer>().DOFade(0, 2.8f).OnComplete(() => Destroy(gameObject));
+                    });
+                });
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
+            if (!_canConvert) return;
+            
             if (CheckLayerMask.IsInLayerMask(other.gameObject, enemyLayer) &&
                 other.gameObject.TryGetComponent<EnemyBase>(out var enemy)) {
                 enemy.Convert();
