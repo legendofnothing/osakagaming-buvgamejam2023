@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 392374c475946fe40b25b985529496b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
+  hp: 10000
   currentHp: 0
   defender: {fileID: 1496441966297472576, guid: 11fc2c88b2962fd49b6c39fdced1cdb2, type: 3}
   defensePoints:

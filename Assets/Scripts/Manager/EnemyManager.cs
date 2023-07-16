@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Core;
 using Core.EventDispatcher;
 using Enemy;
 using UnityEngine;
@@ -8,7 +9,7 @@ using EventType = Core.EventDispatcher.EventType;
 using Random = UnityEngine.Random;
 
 namespace Manager {
-    public class EnemyManager : MonoBehaviour {
+    public class EnemyManager : Singleton<EnemyManager> {
         [Header("Config")] 
         public GameObject enemyPrefab;
         public List<EnemyBase> enemies;
@@ -39,6 +40,8 @@ namespace Manager {
             enemies.Remove(enemy);
             if (enemies.Count == 0) {
                 this.SendMessage(EventType.OnTurnEnd);
+                minSpawnAmount++;
+                minSpawnAmount++;
             }
         }
     }
