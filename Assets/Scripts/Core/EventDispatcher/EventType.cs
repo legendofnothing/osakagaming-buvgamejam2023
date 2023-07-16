@@ -22,6 +22,7 @@ namespace Core.EventDispatcher {
         OnModifierDeactivated,
         
         OnEnemyDie,
+        OnEnemyConvert,
         OnBarUIChange,
         OnTextUIChange,
         OnWeaponChange,

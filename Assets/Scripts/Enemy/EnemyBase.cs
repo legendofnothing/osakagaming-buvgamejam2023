@@ -185,6 +185,7 @@ namespace Enemy {
             canTakeDamage = false;
             animator.SetBool("IsMoving", false);
 
+            this.SendMessage( EventType.OnEnemyConvert, this);
             
             var s = DOTween.Sequence();
             s
