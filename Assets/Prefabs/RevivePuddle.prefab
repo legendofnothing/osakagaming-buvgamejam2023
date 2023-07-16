@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5413cf8fd990ac941a03a1453c0d4a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bottleBreak: {fileID: 8300000, guid: 0c156e9241e7f0441b86862eb58380ac, type: 3}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128

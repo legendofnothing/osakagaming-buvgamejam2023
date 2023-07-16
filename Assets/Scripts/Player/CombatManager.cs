@@ -45,7 +45,7 @@ namespace Player {
         }
 
         private void Update() {
-            if (Input.GetMouseButton(0)) {
+            if (Input.GetMouseButton(0) && Time.timeScale == 1) {
                 if (IsOverUI()) return;
                 _currentWeapon.Attack();
             }

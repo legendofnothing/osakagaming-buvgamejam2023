@@ -194,6 +194,7 @@ MonoBehaviour:
   wanderSpeed: 1.5
   runAwaySpeed: 2
   runToPlayerSpeed: 4
+  survivorAudio: {fileID: 11400000, guid: 4e67c09314464884aa40b657d1130d5f, type: 2}
   sprites: {fileID: 11400000, guid: c9ca34e504ce6914d90f8171f11e870f, type: 2}
   body: {fileID: 1401647607411778122}
   moveTo: {fileID: 6535413774056070629}

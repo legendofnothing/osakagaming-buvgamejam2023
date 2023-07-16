@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Audio;
 using Core;
 using Core.EventDispatcher;
 using DG.Tweening;
@@ -41,7 +42,8 @@ namespace Survivor {
         public float runAwaySpeed;
         public float runToPlayerSpeed;
 
-        [TitleGroup("Refs")]
+        [TitleGroup("Refs")] 
+        public AudioData survivorAudio;
         public SpriteData sprites;
         public SpriteRenderer body;
         public EntityMoveTo moveTo;
@@ -156,9 +158,13 @@ namespace Survivor {
                 }
             }
         }
-
-
         
+        public void PlayAudio() {
+            if (_currentState != SurvivorState.RunToPlayer) {
+                AudioManager.instance
+                    .PlayClipAtPoint(transform.position, survivorAudio.clips[Random.Range(0, survivorAudio.clips.Count)]);
+            }
+        }
 
         private void EnterBase() {
             canTakeDamage = false;
