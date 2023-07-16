@@ -745,7 +745,9 @@ GameObject:
   - component: {fileID: 1468747156458395008}
   - component: {fileID: 4428033958849936309}
   - component: {fileID: 1141922453751556635}
+  - component: {fileID: 6349540340121061672}
   - component: {fileID: 8698474286337313306}
+  - component: {fileID: 443066544669282301}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -969,6 +971,23 @@ MonoBehaviour:
   currentHP: 0
   canTakeDamage: 1
   animator: {fileID: 8698474286337313306}
+--- !u!114 &6349540340121061672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6577412556147312562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fbe87ab5a042b749b7bef91743a1a0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerWalk: {fileID: 8300000, guid: b6b6b5bf728606d43b2c23b94ce40eb5, type: 3}
+  playerShoot: {fileID: 8300000, guid: f7b620b89f8f53e488e40ee104bcff3d, type: 3}
+  playerReload: {fileID: 8300000, guid: c43505f461d8a5749b62cda11c7be67d, type: 3}
+  playerHit: {fileID: 8300000, guid: 65a2d2a63f8f6224f9b0bce0d20406e7, type: 3}
+  playerThrow: {fileID: 8300000, guid: b74d19441c458e34c8cec68da09b91d4, type: 3}
 --- !u!95 &8698474286337313306
 Animator:
   serializedVersion: 5
@@ -990,6 +1009,14 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!81 &443066544669282301
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6577412556147312562}
+  m_Enabled: 1
 --- !u!1 &7353292900563036586
 GameObject:
   m_ObjectHideFlags: 0
