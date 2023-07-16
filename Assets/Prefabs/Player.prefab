@@ -966,7 +966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0b9d42aac1b3a647b7a5ebc821b32b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
+  hp: 1000
   recoverTime: 0.4
   currentHP: 0
   canTakeDamage: 1
@@ -1128,7 +1128,7 @@ MonoBehaviour:
   molotovPrefab: {fileID: 2367373758718227076, guid: 1f995630fd9b8a54d995b76111b364fc, type: 3}
   revivePuddle: {fileID: 1727671300179322867, guid: caabea9bbd6442f4d82ab93dfc2d5af3, type: 3}
   delay: 1
-  startingAmount: 67
+  startingAmount: 2
   radius: 2
   amount: 0
 --- !u!1 &7530660485513619248
