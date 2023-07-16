@@ -36,7 +36,7 @@ namespace Weapons.Variants {
                         shootPoint.localEulerAngles.y, 
                         Random.Range(-spreadAngle/2f, spreadAngle/2f));
                 var shellInst = Instantiate(shell, shootPoint.position, shootPoint.rotation * Quaternion.AngleAxis(180, Vector3.up));
-                shellInst.GetComponent<BulletBehavior>().damage = damage;
+                shellInst.GetComponent<BulletBehavior>().damage = currentDamage * CombatManager.instance.damageModifier;
             }
             
             DOVirtual.DelayedCall(reloadTime, () => _canAttack = true);

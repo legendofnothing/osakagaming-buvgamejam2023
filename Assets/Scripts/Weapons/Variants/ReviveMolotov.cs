@@ -1,8 +1,11 @@
 ﻿using System;
+using Core.EventDispatcher;
 using DG.Tweening;
 using Player;
 using Sirenix.OdinInspector;
+using UI;
 using UnityEngine;
+using EventType = Core.EventDispatcher.EventType;
 
 namespace Weapons.Variants {
     public class ReviveMolotov : WeaponBase {
@@ -20,10 +23,22 @@ namespace Weapons.Variants {
         private Vector2 _defaultPosition;
         private bool _canAttack = true;
 
-        private void Start() {
+        protected override void Start() {
+            base.Start();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _defaultPosition = transform.localPosition;
             amount = startingAmount;
+            this.SendMessage(EventType.OnTextUIChange, new TextMessage() {
+                type = TextUI.TextType.MolotovCount,
+                message = $"x{amount}"
+            });
+            this.SubscribeListener(EventType.OnMolotovAdded, _ => {
+                amount++;
+                this.SendMessage(EventType.OnTextUIChange, new TextMessage() {
+                    type = TextUI.TextType.MolotovCount,
+                    message = $"x{amount}"
+                });
+            });
         }
 
         public override void Attack() {
@@ -32,6 +47,10 @@ namespace Weapons.Variants {
             amount--;
 
             CombatManager.instance.animator.SetTrigger("Throw");
+            this.SendMessage(EventType.OnTextUIChange, new TextMessage() {
+                type = TextUI.TextType.MolotovCount,
+                message = $"x{amount}"
+            });
 
             DOVirtual.DelayedCall(0.3f, () =>
             {
@@ -39,9 +58,7 @@ namespace Weapons.Variants {
                 mousePosition.z = 0;
                 var molotovInst = Instantiate(molotovPrefab, transform.position, Quaternion.identity);
                 _spriteRenderer.color -= new Color(0, 0, 0, 1);
-
                 
-
                 var s = DOTween.Sequence();
                 s
                     .Append(molotovInst.transform.DOMove(mousePosition, Vector3.Distance(mousePosition, transform.position) / 2)
@@ -53,9 +70,7 @@ namespace Weapons.Variants {
                             puddleInst.transform.localScale = Vector3.one * radius;
                         }));
             });
-
             
-
             DOVirtual.DelayedCall(delay, () =>
             {
                 transform.localPosition = _defaultPosition;

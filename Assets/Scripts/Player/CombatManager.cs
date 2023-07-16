@@ -3,19 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Core;
+using Core.EventDispatcher;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Weapons;
+using EventType = Core.EventDispatcher.EventType;
 
 namespace Player {
     public class CombatManager : Singleton<CombatManager> {
         public List<WeaponBase> weapons;
+        public LayerMask uiLayer;
 
         private Rigidbody2D _rb;
         private WeaponBase _currentWeapon;
 
         public Animator animator;
+        [ReadOnly] public float damageModifier = 1;
+        [ReadOnly] public float speedModifier = 1;
 
         private Tween _currentKnockbackTween;
 
@@ -40,6 +46,7 @@ namespace Player {
 
         private void Update() {
             if (Input.GetMouseButton(0)) {
+                if (IsOverUI()) return;
                 _currentWeapon.Attack();
             }
 
@@ -63,12 +70,24 @@ namespace Player {
             nextWeapon.gameObject.SetActive(true);
             _currentWeapon.gameObject.SetActive(false);
             _currentWeapon = nextWeapon;
-            PlayerMovement.instance.currentSpeed = _currentWeapon.speed;
+            this.SendMessage(EventType.OnWeaponChange, targetSlot);
+            PlayerMovement.instance.currentSpeed = _currentWeapon.currentSpeed * speedModifier;
             PlayerMovement.instance.maxSpeed = _currentWeapon.maxSpeed;
         }
 
         public void Knockback(Vector3 dir, float force) {
             _rb.AddForce(dir * (force * Time.fixedDeltaTime), ForceMode2D.Impulse);
+        }
+        
+        private bool IsOverUI() {
+            //raycast from mouse pos to all UI elements 
+            var results = new List<RaycastResult>();
+            var eventData = new PointerEventData(EventSystem.current) {
+                position = Input.mousePosition
+            };
+            EventSystem.current.RaycastAll(eventData, results);
+            var hit = results.Find(result => CheckLayerMask.IsInLayerMask(result.gameObject, uiLayer));
+            return hit.gameObject != null;
         }
     }
 }

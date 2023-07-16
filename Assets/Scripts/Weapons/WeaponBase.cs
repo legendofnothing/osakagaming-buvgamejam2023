@@ -22,12 +22,18 @@ namespace Weapons {
         [HideIf("slot", Slot.Unarmed)] public float damage;
         public float speed = 1800;
         public float maxSpeed = 8f;
+        [ReadOnly] public float currentSpeed;
         [HideIf("slot", Slot.Unarmed)]  public LayerMask interactLayers;
+        [HideIf("slot", Slot.Unarmed)] [ReadOnly] public float currentDamage;
         
         [TitleGroup("Throwable Config")] 
         [HideIf("type", Type.Gun)] [HideIf("slot", Slot.Unarmed)] public Ease throwableEaseType;
-        [HideIf("type", Type.Gun)] [HideIf("slot", Slot.Unarmed)] public float throwableDuration;
-        
+
+        protected virtual void Start() {
+            currentSpeed = speed;
+            currentDamage = damage;
+        }
+
         public abstract void Attack();
         public virtual bool CanSwitch() => true;
 
