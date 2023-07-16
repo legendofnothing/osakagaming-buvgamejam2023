@@ -1,26 +1,43 @@
 using Core.EventDispatcher;
 using Entity;
+using System.Collections;
 using TMPro;
 using UI;
 using UnityEngine;
+using UnityEngine.AI;
 using EventType = Core.EventDispatcher.EventType;
 
 namespace Player {
     public class PlayerHealth : EntityBase
     {
-        protected override void Start() {
+        public Animator animator;
+        private bool _isAlive = true;
+
+        protected override void Start()
+        {
             base.Start();
+            animator.SetBool("IsAlive", true);
             this.SendMessage(EventType.OnBarUIChange, new BarMessage() {type = BarUI.BarType.Health, value = 1});
         }
-
+            
+            
         public override void TakeDamage(float amount) {
+            animator.SetTrigger("Hurt");
             base.TakeDamage(amount);
             this.SendMessage(EventType.OnPlayerTakeDamage);
             this.SendMessage(EventType.OnBarUIChange, new BarMessage() {type = BarUI.BarType.Health, value = currentHP / hp});
+            StartCoroutine(Recover());
         }
 
-        protected override void Death() {
+        protected override IEnumerator DelayDeath() {
             
+            _isAlive = false;
+            animator.SetBool("IsAlive", false);
+            GetComponent<BoxCollider2D>().enabled = false;
+            this.SendMessage(EventType.OnPlayerDeath);
+            yield return new WaitForSeconds(2.65f);
+            gameObject.SetActive(false);
+
         }
     }
 }

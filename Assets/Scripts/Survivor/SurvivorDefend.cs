@@ -28,6 +28,8 @@ namespace Survivor {
 
         private void Start() {
             animator.SetBool("SeeEnemy", false);
+
+
         }
 
         private void Update() {
@@ -92,8 +94,17 @@ namespace Survivor {
         //    _canAttack = true;
         //}
 
+        public IEnumerator Death()
+        {
+            animator.SetTrigger("Death");
+            yield return new WaitForSeconds(2.4f);
+            Destroy(gameObject);
+        }
+
         private IEnumerator Attack1()
         {
+            //if(!_canAttack) { yield break; };
+
             animator.SetTrigger("Shoot");
 
             //TurnToTarget();
