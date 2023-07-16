@@ -14,6 +14,8 @@ namespace UI {
     public class BarUI : MonoBehaviour {
         public enum BarType {
             Health,
+            Faith,
+            Base,
         }
 
         [Header("Config")] 
@@ -24,7 +26,7 @@ namespace UI {
         public float duration;
         public Ease easeType;
 
-        private void Start() {
+        private void Awake() {
             this.SubscribeListener(EventType.OnBarUIChange, barMess => OnBarChange((BarMessage) barMess));    
         }
 

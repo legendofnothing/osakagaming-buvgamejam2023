@@ -15,6 +15,7 @@ namespace UI {
             ResearchersCount,
             
             TotalSurvivorsInBase,
+            MaximumSurvivorsWereInBase,
             DefenderLeft,
             CureProgress,
         }

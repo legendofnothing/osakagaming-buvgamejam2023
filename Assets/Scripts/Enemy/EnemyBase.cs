@@ -174,6 +174,8 @@ namespace Enemy {
             if (!_isAlive) { return; }
 
             if (_hasChanged) return;
+            
+            StopAllCoroutines();
             _hasChanged = true;
             _canSwitchState = false;
             _canAttack = false;

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 17283e570dfda284691ed265b3ab4f9f
+guid: 25f351523c6a28845b77eac71c51af38
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ui_base_health_0
+      name: ui_faith_bar_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 59
-        width: 222
-        height: 254
+        y: 0
+        width: 91
+        height: 89
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14ad38a4b5db0ce4a9e8626d7ada095d
-      internalID: 305579667
+      spriteID: 5323cd26a97dfdc458a0f912047bb63b
+      internalID: 373573346
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ui_base_health_1
+      name: ui_faith_bar_1
       rect:
         serializedVersion: 2
-        x: 299
-        y: 52
-        width: 239
-        height: 278
+        x: 115
+        y: 9
+        width: 306
+        height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1943728a93a97014fada9e51d4686413
-      internalID: -1957127374
+      spriteID: 502c27f27c122fc49b5ad91a925406b6
+      internalID: -1693925854
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ui_base_health_2
+      name: ui_faith_bar_2
       rect:
         serializedVersion: 2
-        x: 646
-        y: 71
-        width: 222
-        height: 254
+        x: 457
+        y: 18
+        width: 306
+        height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2403573253aec3c4ba66995893bd9f5c
-      internalID: 1837089745
+      spriteID: 3d9ebb9eba9a96e41a65aa5135a96692
+      internalID: -1732263622
       vertices: []
       indices: 
       edges: []
@@ -196,9 +196,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ui_base_health_0: 305579667
-      ui_base_health_1: -1957127374
-      ui_base_health_2: 1837089745
+      ui_faith_bar_0: 373573346
+      ui_faith_bar_1: -1693925854
+      ui_faith_bar_2: -1732263622
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

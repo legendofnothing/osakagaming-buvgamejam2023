@@ -29,10 +29,12 @@ namespace Base {
         [ReadOnly] public int researchSurvivors;
         [Space] 
         [ReadOnly] public float currentCureProgress;
+        [ReadOnly] public float faith;
 
         private Tween _currentCureTween;
         
         public void Start() {
+            faith = 1;
             currentHp = hp;
             this.SubscribeListener(EventType.OnSurvivorEnteredBase, _ => AddSurvivors());
             FireUIEvent();
@@ -68,6 +70,7 @@ namespace Base {
                 message = $"x{researchSurvivors}"
             });
             
+            
             this.SendMessage(EventType.OnTextUIChange, new TextMessage() {
                 type = TextUI.TextType.TotalSurvivorsInBase,
                 message = $"x{survivorCounts}"
@@ -76,6 +79,21 @@ namespace Base {
             this.SendMessage(EventType.OnTextUIChange, new TextMessage() {
                 type = TextUI.TextType.DefenderLeft,
                 message = $"{defenders.Count}/{defensePoints.Count}"
+            });
+            
+            this.SendMessage(EventType.OnTextUIChange, new TextMessage() {
+                type = TextUI.TextType.MaximumSurvivorsWereInBase,
+                message = $"x{peakedSurvivorCounts}"
+            });
+            
+            this.SendMessage(EventType.OnBarUIChange, new BarMessage() {
+                type = BarUI.BarType.Base,
+                value = currentHp / hp
+            });
+            
+            this.SendMessage(EventType.OnBarUIChange, new BarMessage() {
+                type = BarUI.BarType.Faith,
+                value = faith
             });
         }
 
@@ -96,6 +114,8 @@ namespace Base {
                 }
                 else researchSurvivors++;
             }
+
+            faith = (float) survivorCounts / peakedSurvivorCounts;
             
             FireUIEvent();
         }
@@ -116,6 +136,8 @@ namespace Base {
                     else researchSurvivors--;
                 }
             }
+            
+            faith = (float) survivorCounts / peakedSurvivorCounts;
             
             FireUIEvent();
         }
