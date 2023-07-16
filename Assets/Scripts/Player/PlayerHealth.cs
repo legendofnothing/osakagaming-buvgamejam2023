@@ -33,9 +33,11 @@ namespace Player {
             
             _isAlive = false;
             animator.SetBool("IsAlive", false);
+            animator.SetTrigger("dead");
             GetComponent<BoxCollider2D>().enabled = false;
             this.SendMessage(EventType.OnPlayerDeath);
-            yield return new WaitForSeconds(2.65f);
+            yield return new WaitForSeconds(1.8f);
+            animator.ResetTrigger("dead");
             this.SendMessage(EventType.OnEndGame);
             gameObject.SetActive(false);
         }

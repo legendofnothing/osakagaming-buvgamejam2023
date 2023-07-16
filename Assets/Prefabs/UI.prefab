@@ -668,7 +668,7 @@ RectTransform:
   - {fileID: 8566333894301535580}
   - {fileID: 725589038297210445}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8904,7 +8904,7 @@ GameObject:
   - component: {fileID: 3182453915416073735}
   - component: {fileID: 7270310829171197925}
   - component: {fileID: 1549141385864304231}
-  - component: {fileID: 3877098033800839853}
+  - component: {fileID: 2247935140403924862}
   m_Layer: 5
   m_Name: Death
   m_TagString: Untagged
@@ -9006,7 +9006,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3877098033800839853
+--- !u!114 &2247935140403924862
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9015,7 +9015,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7789981068750240151}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d23d1f2b15b4b034ca47c7e89f6087fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f17093037b09df478901612649b3045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   main: {fileID: 3521372373799505065}
