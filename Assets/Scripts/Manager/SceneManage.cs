@@ -17,18 +17,32 @@ public class SceneManage : MonoBehaviour
         
     }
 
-    void LoadScene(string name)
+    public void LoadScene(string name)
     {
         SceneManager.LoadScene(name);
     }
 
-    void LoadScene(int sceneindex)
+    public void LoadScene(int sceneindex)
     {
         SceneManager.LoadScene(sceneindex);
     }
 
-    private void ReloadScene()
+    public void ReloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void LoadNextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void LoadPreviouseScene()
+    {
+        if(SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        }
+        
     }
 }
