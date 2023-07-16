@@ -966,7 +966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0b9d42aac1b3a647b7a5ebc821b32b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 1000
+  hp: 500
   recoverTime: 0.4
   currentHP: 0
   canTakeDamage: 1
