@@ -1,5 +1,7 @@
 using System;
+using Core.EventDispatcher;
 using Sirenix.OdinInspector;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -21,6 +23,8 @@ namespace Player {
         private Rigidbody2D rb;
         private SpriteRenderer _BodySpriteRenderer;
         private Animator _animator;
+        private bool _isAlive = true;
+        
         
         private void Awake()
         {
@@ -31,10 +35,18 @@ namespace Player {
         }
 
         private void Start() {
+            _isAlive = true;
             currentSpeed = moveSpeed;
+            this.SubscribeListener(Core.EventDispatcher.EventType.OnPlayerDeath, _ => OnPlayerDeath());
+        }
+
+        private void OnPlayerDeath() {
+             _isAlive = false;
         }
 
         private void Update() {
+            if(!_isAlive) { return; }
+
             _moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
             
             if (rb.velocity.magnitude > maxSpeed) {
@@ -47,6 +59,8 @@ namespace Player {
 
         private void FixedUpdate()
         {
+            if (!_isAlive) { return; }
+
             //Change the drag based on moving key is press or not//
             if (Mathf.Abs(_moveInput.x) == 0 && Mathf.Abs(_moveInput.y) == 0)
             {

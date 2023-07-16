@@ -170,7 +170,10 @@ namespace Base {
             if (defensePoints.Count >= defenseSurvivors) {
                 var defInst = defenders[defenseSurvivors];
                 defenders.Remove(defInst);
-                Destroy(defInst.gameObject);
+                this.SendMessage(EventType.OnSurvivorDecreased);
+
+                defInst.Death();
+                //Destroy(defInst.gameObject);
             }
             
             HandleModifier();
