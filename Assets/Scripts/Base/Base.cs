@@ -41,6 +41,20 @@ namespace Base {
             this.SubscribeListener(EventType.OnCureReset, _ => {
                 StartTween();
             });
+            
+            this.SubscribeListener(EventType.OnTransferResearchersToDefenders, _ => {
+                if (researchSurvivors > 0) {
+                    researchSurvivors--;
+                    AddDefender();
+                }
+            });
+            
+            this.SubscribeListener(EventType.OnTransferDefendersToResearchers, _ => {
+                if (defenseSurvivors > 0) {
+                    RemoveDefender();
+                    researchSurvivors++;
+                }
+            });
         }
         
         private void FireUIEvent() {

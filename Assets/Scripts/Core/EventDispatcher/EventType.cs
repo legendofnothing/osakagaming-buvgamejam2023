@@ -14,6 +14,9 @@ namespace Core.EventDispatcher {
         
         OnPlayerTakeDamage,
         
+        OnTransferDefendersToResearchers,
+        OnTransferResearchersToDefenders, 
+        
         OnEnemyDie,
         OnBarUIChange,
         OnTextUIChange,
