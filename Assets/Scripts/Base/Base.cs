@@ -167,12 +167,12 @@ namespace Base {
 
         public void RemoveDefender() {
             defenseSurvivors--;
-            if (defensePoints.Count >= defenseSurvivors) {
+            if (defensePoints.Count > defenseSurvivors) {
                 var defInst = defenders[defenseSurvivors];
                 defenders.Remove(defInst);
                 this.SendMessage(EventType.OnSurvivorDecreased);
 
-                defInst.Death();
+                StartCoroutine(defInst.Death());
                 //Destroy(defInst.gameObject);
             }
             
