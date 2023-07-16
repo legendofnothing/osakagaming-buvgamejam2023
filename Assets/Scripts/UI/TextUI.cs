@@ -18,6 +18,8 @@ namespace UI {
             MaximumSurvivorsWereInBase,
             DefenderLeft,
             CureProgress,
+            
+            Score,
         }
 
         [Header("Config")] 
