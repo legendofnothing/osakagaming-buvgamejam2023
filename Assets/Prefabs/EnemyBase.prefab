@@ -37,7 +37,7 @@ Transform:
   - {fileID: 9007306820469498732}
   - {fileID: 7290779607569148896}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &8694607742631260673
 NavMeshAgent:
@@ -163,6 +163,7 @@ MonoBehaviour:
   highPriorityTargets:
     serializedVersion: 2
     m_Bits: 8
+  sprites: {fileID: 11400000, guid: c6b51f2bd4d6f3841ab7038f2c9eeb83, type: 2}
   moveTo: {fileID: 202633869737993961}
   body: {fileID: 2289828338177575737}
   animator: {fileID: 90287248381372495}

@@ -27,7 +27,8 @@ namespace Enemy {
         public LayerMask lowPriorityTargets;
         public LayerMask highPriorityTargets;
 
-        [TitleGroup("Refs")] 
+        [TitleGroup("Refs")]
+        public SpriteData sprites;
         public EntityMoveTo moveTo;
         public SpriteRenderer body;       
         public Animator animator;
@@ -52,6 +53,7 @@ namespace Enemy {
             animator.SetBool("IsAlive", true) ;
 
             _agent.avoidancePriority = Random.Range(20, 70);
+            body.sprite = sprites.sprites[Random.Range(0, sprites.sprites.Count)];
         }
         
         private void Update() {

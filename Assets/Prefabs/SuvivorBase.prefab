@@ -38,7 +38,7 @@ Transform:
   - {fileID: 503263978388265715}
   - {fileID: 5556406610825861001}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2682941767840780549
 SpriteRenderer:
@@ -194,6 +194,8 @@ MonoBehaviour:
   wanderSpeed: 1.5
   runAwaySpeed: 2
   runToPlayerSpeed: 4
+  sprites: {fileID: 11400000, guid: c9ca34e504ce6914d90f8171f11e870f, type: 2}
+  body: {fileID: 1401647607411778122}
   moveTo: {fileID: 6535413774056070629}
   animator: {fileID: 6307865122642319143}
   _currentState: 0

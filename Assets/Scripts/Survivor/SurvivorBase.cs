@@ -5,6 +5,7 @@ using System.Linq;
 using Core;
 using Core.EventDispatcher;
 using DG.Tweening;
+using Enemy;
 using Entity;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -40,7 +41,9 @@ namespace Survivor {
         public float runAwaySpeed;
         public float runToPlayerSpeed;
 
-        [TitleGroup("Refs")] 
+        [TitleGroup("Refs")]
+        public SpriteData sprites;
+        public SpriteRenderer body;
         public EntityMoveTo moveTo;
         public Animator animator;
         
@@ -60,6 +63,7 @@ namespace Survivor {
             _agent.speed = wanderSpeed;
             _currentState = SurvivorState.Wander;
             _defaultPosition = transform.position;
+            body.sprite = sprites.sprites[Random.Range(0, sprites.sprites.Count)];
         }
 
         private void Update() {
