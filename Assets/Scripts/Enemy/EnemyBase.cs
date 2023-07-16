@@ -96,6 +96,7 @@ namespace Enemy {
                 .FirstOrDefault();
 
             if (target.collider != null) {
+                animator.SetTrigger("attack");
                 if (target.transform.gameObject.TryGetComponent<EntityBase>(out var entity)) {
                     entity.TakeDamage(damage);
                 }
@@ -161,7 +162,7 @@ namespace Enemy {
             this.GetComponent<BoxCollider2D>().enabled = false;
             _defaultSpeed = 0;
             _agent.isStopped = true;
-            yield return new WaitForSeconds(1.3f);
+            yield return new WaitForSeconds(1.2f);
             Destroy(gameObject);
         }
 
@@ -169,12 +170,16 @@ namespace Enemy {
             if (!_isAlive) { return; }
 
             if (_hasChanged) return;
+            
+            GetComponent<BoxCollider2D>().enabled = false;
+
             _hasChanged = true;
             _canSwitchState = false;
             _canAttack = false;
             canTakeDamage = false;
             animator.SetBool("IsMoving", false);
 
+            
             var s = DOTween.Sequence();
             s
                 .Append(DOVirtual.Float(_agent.speed, 0, 4f, value => {

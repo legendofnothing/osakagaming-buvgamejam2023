@@ -13,6 +13,7 @@ namespace Core.EventDispatcher {
         OnSurvivorEnteredBase,
         
         OnPlayerTakeDamage,
+        OnPlayerDeath,
         
         OnEnemyDie,
     }
