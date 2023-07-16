@@ -14,6 +14,17 @@ namespace Core.EventDispatcher {
         
         OnPlayerTakeDamage,
         
+        OnTransferDefendersToResearchers,
+        OnTransferResearchersToDefenders, 
+        
+        OnModifierActivated,
+        OnModifierDeactivated,
+        
         OnEnemyDie,
+        OnBarUIChange,
+        OnTextUIChange,
+        OnWeaponChange,
+        OnMolotovAdded,
+        OnCureReset,
     }
 }

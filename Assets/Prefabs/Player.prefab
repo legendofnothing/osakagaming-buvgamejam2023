@@ -769,7 +769,7 @@ Transform:
   - {fileID: 2673374043800462275}
   - {fileID: 447047012896169087}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4855267466004873383
 SpriteRenderer:
@@ -931,6 +931,9 @@ MonoBehaviour:
   - {fileID: 3181167931190025635}
   - {fileID: 4525620271698393808}
   - {fileID: 3990305973251481778}
+  uiLayer:
+    serializedVersion: 2
+    m_Bits: 32
   animator: {fileID: 8698474286337313306}
 --- !u!114 &4428033958849936309
 MonoBehaviour:

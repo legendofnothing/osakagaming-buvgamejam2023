@@ -104,7 +104,12 @@ namespace Enemy {
                 }
             }
 
-            DOVirtual.DelayedCall(attackDelay, () => _canAttack = true);
+            StartCoroutine(AttackDelay());
+        }
+
+        private IEnumerator AttackDelay() {
+            yield return new WaitForSeconds(attackDelay);
+            _canAttack = true;
         }
 
         public override void TakeDamage(float amount) {
@@ -169,6 +174,8 @@ namespace Enemy {
             if (!_isAlive) { return; }
 
             if (_hasChanged) return;
+            
+            StopAllCoroutines();
             _hasChanged = true;
             _canSwitchState = false;
             _canAttack = false;
