@@ -1,4 +1,5 @@
 using System;
+using Audio;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,12 +18,14 @@ namespace UI {
                 switch (_isPaused) {
                     case true:
                         pauseMenu.SetActive(false);
+                        AudioManager.instance.UnPauseMusic();
                         Time.timeScale = 1;
                         _isPaused = false;
                         break;
                     
                     default:
                         pauseMenu.SetActive(true);
+                        AudioManager.instance.PauseMusic();
                         Time.timeScale = 0;
                         _isPaused = true;
                         break;

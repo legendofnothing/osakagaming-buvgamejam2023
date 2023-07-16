@@ -25,5 +25,13 @@ namespace Audio {
         public void PlayOneShot(AudioClip clip) {
             sfxSource.PlayOneShot(clip);
         }
+
+        public void PauseMusic() {
+            musicSource.Pause();
+        }
+
+        public void UnPauseMusic() {
+            musicSource.UnPause();
+        }
     }
 }
