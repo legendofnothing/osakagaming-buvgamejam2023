@@ -271,11 +271,12 @@ MonoBehaviour:
   damage: 10
   speed: 1800
   maxSpeed: 8
+  currentSpeed: 0
   interactLayers:
     serializedVersion: 2
     m_Bits: 128
+  currentDamage: 0
   throwableEaseType: 0
-  throwableDuration: 0
   shell: {fileID: 3345712863797639695, guid: c99e4fec96192fe468ee39c095706457, type: 3}
   shootPoint: {fileID: 6512184927086722204}
   playerHands: {fileID: 8209272508245671222}
@@ -722,11 +723,12 @@ MonoBehaviour:
   damage: 0
   speed: 3000
   maxSpeed: 25
+  currentSpeed: 0
   interactLayers:
     serializedVersion: 2
     m_Bits: 0
+  currentDamage: 0
   throwableEaseType: 0
-  throwableDuration: 0
 --- !u!1 &6577412556147312562
 GameObject:
   m_ObjectHideFlags: 0
@@ -769,7 +771,7 @@ Transform:
   - {fileID: 2673374043800462275}
   - {fileID: 447047012896169087}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4855267466004873383
 SpriteRenderer:
@@ -935,6 +937,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 32
   animator: {fileID: 8698474286337313306}
+  damageModifier: 1
+  speedModifier: 1
 --- !u!114 &4428033958849936309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1088,11 +1092,12 @@ MonoBehaviour:
   damage: 0
   speed: 1800
   maxSpeed: 8
+  currentSpeed: 0
   interactLayers:
     serializedVersion: 2
     m_Bits: 128
+  currentDamage: 0
   throwableEaseType: 27
-  throwableDuration: 0
   molotovPrefab: {fileID: 2367373758718227076, guid: 1f995630fd9b8a54d995b76111b364fc, type: 3}
   revivePuddle: {fileID: 1727671300179322867, guid: caabea9bbd6442f4d82ab93dfc2d5af3, type: 3}
   delay: 1

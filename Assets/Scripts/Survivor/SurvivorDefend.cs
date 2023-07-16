@@ -28,7 +28,7 @@ namespace Survivor {
 
         private void Start() {
             animator.SetBool("SeeEnemy", false);
-
+            animator.SetBool("IsAlive", true);
 
         }
 
@@ -96,8 +96,10 @@ namespace Survivor {
 
         public IEnumerator Death()
         {
-            animator.SetTrigger("Death");
-            yield return new WaitForSeconds(2.4f);
+            //animator.SetTrigger("Death");
+            animator.SetBool("IsAlive", false);
+            animator.SetTrigger("death");
+            yield return new WaitForSeconds(2.3f);
             Destroy(gameObject);
         }
 
@@ -107,7 +109,7 @@ namespace Survivor {
 
             animator.SetTrigger("Shoot");
 
-            //TurnToTarget();
+            TurnToTarget();
 
 
 
