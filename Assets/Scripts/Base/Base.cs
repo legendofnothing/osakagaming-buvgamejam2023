@@ -124,8 +124,8 @@ namespace Base {
                 }
                 else researchSurvivors++;
             }
-
-            faith = (float) survivorCounts / peakedSurvivorCounts;
+            
+            faith = survivorCounts / (float) peakedSurvivorCounts;
             
             HandleModifier();
             FireUIEvent();
@@ -135,6 +135,7 @@ namespace Base {
             currentHp -= amount;
             if (survivorCounts > 0) {
                 survivorCounts--;
+                faith = survivorCounts / (float) peakedSurvivorCounts;
                 if (defenseSurvivors > researchSurvivors) {
                     RemoveDefender();
                 }
@@ -147,9 +148,7 @@ namespace Base {
                     else researchSurvivors--;
                 }
             }
-            
-            faith = (float) survivorCounts / peakedSurvivorCounts;
-            
+
             HandleModifier();
             FireUIEvent();
         }
@@ -203,6 +202,8 @@ namespace Base {
         }
 
         public void HandleModifier() {
+            if (survivorCounts < 1) return;
+            
             if (faith < 0.4f) {
                 if (!currentModifiers.Contains(ModifierType.PlayerDebuff)) currentModifiers.Add(ModifierType.PlayerDebuff);
                 
