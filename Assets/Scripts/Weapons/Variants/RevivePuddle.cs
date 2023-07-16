@@ -1,4 +1,5 @@
 using System;
+using Audio;
 using Core;
 using DG.Tweening;
 using Enemy;
@@ -8,6 +9,7 @@ using UnityEngine;
 namespace Weapons.Variants {
     public class RevivePuddle : MonoBehaviour {
         [TitleGroup("Config")] 
+        public AudioClip bottleBreak;
         public LayerMask enemyLayer;
         public float duration = 6f;
 
@@ -15,6 +17,7 @@ namespace Weapons.Variants {
         private PolygonCollider2D _collider2D;
 
         private void Start() {
+            AudioManager.instance.PlayClipAtPoint(transform.position, bottleBreak);
             _collider2D = GetComponent<PolygonCollider2D>();
             _collider2D.enabled = false;
             transform.localScale = Vector3.zero;
