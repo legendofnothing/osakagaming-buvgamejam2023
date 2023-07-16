@@ -4,6 +4,7 @@ using System.Linq;
 using Bullet;
 using Core;
 using DG.Tweening;
+using Player;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -106,10 +107,10 @@ namespace Survivor {
                         shootPoint.localEulerAngles.y,
                         Random.Range(-spreadAngle / 2f, spreadAngle / 2f));
                 var shellInst = Instantiate(shell, shootPoint.position, shootPoint.rotation * Quaternion.AngleAxis(180, Vector3.up));
-                shellInst.GetComponent<BulletBehavior>().damage = damage;
+                shellInst.GetComponent<BulletBehavior>().damage = damage * CombatManager.instance.damageModifier;
             }
 
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(5f / CombatManager.instance.speedModifier);
 
             _canAttack = true;
         }

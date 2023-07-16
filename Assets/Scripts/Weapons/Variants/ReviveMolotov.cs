@@ -23,7 +23,8 @@ namespace Weapons.Variants {
         private Vector2 _defaultPosition;
         private bool _canAttack = true;
 
-        private void Start() {
+        protected override void Start() {
+            base.Start();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _defaultPosition = transform.localPosition;
             amount = startingAmount;
@@ -57,9 +58,7 @@ namespace Weapons.Variants {
                 mousePosition.z = 0;
                 var molotovInst = Instantiate(molotovPrefab, transform.position, Quaternion.identity);
                 _spriteRenderer.color -= new Color(0, 0, 0, 1);
-
                 
-
                 var s = DOTween.Sequence();
                 s
                     .Append(molotovInst.transform.DOMove(mousePosition, Vector3.Distance(mousePosition, transform.position) / 2)
@@ -71,9 +70,7 @@ namespace Weapons.Variants {
                             puddleInst.transform.localScale = Vector3.one * radius;
                         }));
             });
-
             
-
             DOVirtual.DelayedCall(delay, () =>
             {
                 transform.localPosition = _defaultPosition;

@@ -4,6 +4,7 @@ using System.Linq;
 using Core;
 using Core.EventDispatcher;
 using DG.Tweening;
+using Player;
 using Sirenix.OdinInspector;
 using Survivor;
 using UI;
@@ -12,6 +13,13 @@ using EventType = Core.EventDispatcher.EventType;
 using Random = UnityEngine.Random;
 
 namespace Base {
+    public enum ModifierType {
+        PlayerBuff,
+        PlayerDebuff,
+        DefenderBuff,
+        DefenderDebuff,
+    }
+    
     public class Base : Singleton<Base> {
         public float hp;
         [ReadOnly] public float currentHp;
@@ -30,6 +38,8 @@ namespace Base {
         [Space] 
         [ReadOnly] public float currentCureProgress;
         [ReadOnly] public float faith;
+        [Space] 
+        [ReadOnly] public List<ModifierType> currentModifiers = new();
 
         private Tween _currentCureTween;
         
@@ -117,6 +127,7 @@ namespace Base {
 
             faith = (float) survivorCounts / peakedSurvivorCounts;
             
+            HandleModifier();
             FireUIEvent();
         }
 
@@ -139,6 +150,7 @@ namespace Base {
             
             faith = (float) survivorCounts / peakedSurvivorCounts;
             
+            HandleModifier();
             FireUIEvent();
         }
 
@@ -149,6 +161,7 @@ namespace Base {
                 defenders.Add(defInst.GetComponent<SurvivorDefend>());
             }
             
+            HandleModifier();
             FireUIEvent();
         }
 
@@ -160,6 +173,7 @@ namespace Base {
                 Destroy(defInst.gameObject);
             }
             
+            HandleModifier();
             FireUIEvent();
         }
 
@@ -183,6 +197,89 @@ namespace Base {
                     });
                 }
             }).SetLoops(-1, LoopType.Restart);
+        }
+
+        public void HandleModifier() {
+            if (faith < 0.4f) {
+                if (!currentModifiers.Contains(ModifierType.PlayerDebuff)) currentModifiers.Add(ModifierType.PlayerDebuff);
+                
+                if (currentModifiers.Contains(ModifierType.PlayerBuff)) {
+                    currentModifiers.Remove(ModifierType.PlayerBuff);
+                    this.SendMessage(EventType.OnModifierDeactivated,ModifierType.PlayerBuff);
+                }
+            } 
+            
+            else if (faith > 0.6f) {
+                if (!currentModifiers.Contains(ModifierType.PlayerBuff)) currentModifiers.Add(ModifierType.PlayerBuff);
+                
+                if (currentModifiers.Contains(ModifierType.PlayerDebuff)) {
+                    currentModifiers.Remove(ModifierType.PlayerDebuff);
+                    this.SendMessage(EventType.OnModifierDeactivated,ModifierType.PlayerDebuff);
+                }
+            }
+
+            else {
+                if (currentModifiers.Contains(ModifierType.PlayerBuff)) {
+                    currentModifiers.Remove(ModifierType.PlayerBuff);
+                    this.SendMessage(EventType.OnModifierDeactivated,ModifierType.PlayerBuff);
+                }
+                
+                if (currentModifiers.Contains(ModifierType.PlayerDebuff)) {
+                    currentModifiers.Remove(ModifierType.PlayerDebuff);
+                    this.SendMessage(EventType.OnModifierDeactivated,ModifierType.PlayerDebuff);
+                }
+            }
+
+            if (defenseSurvivors / (float) survivorCounts > 0.65f) {
+                if (!currentModifiers.Contains(ModifierType.DefenderBuff)) currentModifiers.Add(ModifierType.DefenderBuff);
+                
+                if (currentModifiers.Contains(ModifierType.DefenderDebuff)) {
+                    currentModifiers.Remove(ModifierType.DefenderDebuff);
+                    this.SendMessage(EventType.OnModifierDeactivated,ModifierType.DefenderDebuff);
+                }
+            }
+            else if (faith < 0.3f) {
+                if (!currentModifiers.Contains(ModifierType.DefenderDebuff)) currentModifiers.Add(ModifierType.DefenderDebuff);
+                
+                if (currentModifiers.Contains(ModifierType.DefenderBuff)) {
+                    currentModifiers.Remove(ModifierType.DefenderBuff);
+                    this.SendMessage(EventType.OnModifierDeactivated,ModifierType.DefenderBuff);
+                }
+            }
+            else {
+                if (currentModifiers.Contains(ModifierType.DefenderBuff)) {
+                    currentModifiers.Remove(ModifierType.DefenderBuff);
+                    this.SendMessage(EventType.OnModifierDeactivated,ModifierType.DefenderBuff);
+                }
+                
+                if (currentModifiers.Contains(ModifierType.DefenderDebuff)) {
+                    currentModifiers.Remove(ModifierType.DefenderDebuff);
+                    this.SendMessage(EventType.OnModifierDeactivated,ModifierType.DefenderDebuff);
+                }
+            }
+
+            foreach (var modifier in currentModifiers) {
+                this.SendMessage(EventType.OnModifierActivated, modifier);
+                
+                switch (modifier) {
+                    case ModifierType.PlayerBuff:
+                        CombatManager.instance.damageModifier = 1.5f;
+                        CombatManager.instance.speedModifier = 1.15f;
+                        break;
+                    case ModifierType.PlayerDebuff:
+                        CombatManager.instance.damageModifier = 0.8f;
+                        CombatManager.instance.speedModifier = 0.8f;
+                        break;
+                    case ModifierType.DefenderBuff:
+                        CombatManager.instance.damageModifier = 1.5f;
+                        CombatManager.instance.speedModifier = 1.5f;
+                        break;
+                    case ModifierType.DefenderDebuff:
+                        CombatManager.instance.damageModifier = 0.8f;
+                        CombatManager.instance.speedModifier = 0.8f;
+                        break;
+                }
+            }
         }
     }
 }

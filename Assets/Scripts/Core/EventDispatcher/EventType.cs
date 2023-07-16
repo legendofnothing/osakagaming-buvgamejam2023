@@ -17,6 +17,9 @@ namespace Core.EventDispatcher {
         OnTransferDefendersToResearchers,
         OnTransferResearchersToDefenders, 
         
+        OnModifierActivated,
+        OnModifierDeactivated,
+        
         OnEnemyDie,
         OnBarUIChange,
         OnTextUIChange,

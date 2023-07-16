@@ -20,6 +20,8 @@ namespace Player {
         private WeaponBase _currentWeapon;
 
         public Animator animator;
+        [ReadOnly] public float damageModifier = 1;
+        [ReadOnly] public float speedModifier = 1;
 
         private Tween _currentKnockbackTween;
 
@@ -69,7 +71,7 @@ namespace Player {
             _currentWeapon.gameObject.SetActive(false);
             _currentWeapon = nextWeapon;
             this.SendMessage(EventType.OnWeaponChange, targetSlot);
-            PlayerMovement.instance.currentSpeed = _currentWeapon.speed;
+            PlayerMovement.instance.currentSpeed = _currentWeapon.currentSpeed * speedModifier;
             PlayerMovement.instance.maxSpeed = _currentWeapon.maxSpeed;
         }
 
