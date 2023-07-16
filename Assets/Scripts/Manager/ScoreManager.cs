@@ -1,12 +1,13 @@
+using Core;
 using Core.EventDispatcher;
 using UI;
 using UnityEngine;
 using EventType = Core.EventDispatcher.EventType;
 
 namespace Manager {
-    public class ScoreManager : MonoBehaviour
+    public class ScoreManager : Singleton<ScoreManager>
     {
-        private int _currentScore;
+        public int _currentScore;
 
         // Start is called before the first frame update
         void Start()

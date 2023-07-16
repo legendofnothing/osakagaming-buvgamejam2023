@@ -28,5 +28,7 @@ namespace Core.EventDispatcher {
         OnWeaponChange,
         OnMolotovAdded,
         OnCureReset,
+        
+        OnEndGame,
     }
 }

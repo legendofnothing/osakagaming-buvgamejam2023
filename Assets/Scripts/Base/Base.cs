@@ -133,9 +133,13 @@ namespace Base {
 
         public void TakeDamage(float amount) {
             currentHp -= amount;
+            if (currentHp < 0) {
+                this.SendMessage(EventType.OnEndGame);
+                return;
+            }
             if (survivorCounts > 0) {
                 survivorCounts--;
-                faith = survivorCounts / (float) peakedSurvivorCounts;
+                faith = survivorCounts / (float)peakedSurvivorCounts;
                 if (defenseSurvivors > researchSurvivors) {
                     RemoveDefender();
                 }
@@ -148,6 +152,7 @@ namespace Base {
                     else researchSurvivors--;
                 }
             }
+            
 
             HandleModifier();
             FireUIEvent();

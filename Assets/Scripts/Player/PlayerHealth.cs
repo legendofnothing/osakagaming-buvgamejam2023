@@ -36,8 +36,8 @@ namespace Player {
             GetComponent<BoxCollider2D>().enabled = false;
             this.SendMessage(EventType.OnPlayerDeath);
             yield return new WaitForSeconds(2.65f);
+            this.SendMessage(EventType.OnEndGame);
             gameObject.SetActive(false);
-
         }
     }
 }
